@@ -43,10 +43,9 @@ my ($tree) = @{ $project->get_items(_TREE_) };
 $log->info("read tree '$tree' with ".scalar(@{$tree->get_terminals})." tips");
 
 # read data
-my %data;
+my ( %data, %seen );
 {
 	my @alpha = ( 'A' .. 'Z' );
-	my %seen;
 	$log->info("going to read tabular data from '$data_file'");
 	open my $fh, '<', $data_file or die $!;
 	while(<$fh>) {
@@ -61,6 +60,10 @@ my %data;
 	}
 	$log->info("read ".scalar(keys(%seen))." states for ".scalar(keys(%data))." taxa");
 	close $fh;
+}
+$log->info("going to print state mappings to STDOUT:");
+for my $key ( sort { $a cmp $b } keys %seen ) {
+	print $key, "\t", $seen{$key}, "\n";
 }
 
 # reconcile tree and data
