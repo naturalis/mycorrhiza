@@ -73,11 +73,3 @@ my $matrix = $fac->create_matrix(
 # write entire project as nexus for mesquite
 $project->insert($matrix);
 print $project->to_nexus( '-charstatelabels' => 1 );
-
-
-
-
-
-
-
-
