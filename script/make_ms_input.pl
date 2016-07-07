@@ -101,6 +101,6 @@ $tree->visit_depth_first(
 {
 	$log->info("going to write tree to '$out_tree'");
 	open my $fh, '>', $out_tree or die $!;
-	print $fh $project->to_nexus( '-translate' => 1, '-nodelabels' => 1 );
+	print $fh $project->to_nexus( '-translate' => 1 );
 	close $fh;
 }
