@@ -78,6 +78,15 @@ for my $tip ( @{ $tree->get_terminals } ) {
 }
 $tree->prune_tips(\@prune);
 
+# label tree nodes
+my $n = 0;
+$tree->visit_depth_first( 
+	'-pre' => sub {
+		my $node = shift;
+		$node->set_name( 'n' . ++$n ) if $node->is_internal;
+	}
+);
+
 # write data output
 {
 	$log->info("going to write data to '$out_data'");
@@ -92,6 +101,6 @@ $tree->prune_tips(\@prune);
 {
 	$log->info("going to write tree to '$out_tree'");
 	open my $fh, '>', $out_tree or die $!;
-	print $fh $project->to_nexus( '-translate' => 1 );
+	print $fh $project->to_nexus( '-translate' => 1, '-nodelabels' => 1 );
 	close $fh;
 }
