@@ -2,11 +2,20 @@
 use strict;
 use warnings;
 use Getopt::Long;
+use Bio::Phylo::IO 'parse_tree';
 
 # process command line arguments
-my $states;
+my ( $states, $tree, $hyper );
 GetOptions(
 	'states=s' => \$states,
+	'tree=s'   => \$tree,
+	'hyper'    => \$hyper,
+);
+
+# read tree
+my $t = parse_tree(
+	'-format' => 'nexus',
+	'-file'   => $tree,
 );
 
 # read states
@@ -20,6 +29,32 @@ my %states;
 	}
 }
 
+
+# print first commands header
+print "1\n"; # multistate
+print "2\n"; # MCMC
+print $hyper ? "RJHP exp 0 100\n" : "RevJump exp 10\n"; # hyperprior drawn from 0..100?
+
+# print node statements
+$t->visit_depth_first(
+	'-post' => sub {
+		my $node = shift;
+		my $name = $node->get_internal_name;
+		if ( $node->is_terminal ) {			
+			$node->set_generic( 'tips' => [ $name ] );
+		}
+		else {
+			my @tips;
+			for my $c ( @{ $node->get_children } ) {
+				push @tips, @{ $c->get_generic('tips') };
+			}
+			$node->set_generic( 'tips' => \@tips );
+			print "AddMRCA $name $tips[0] $tips[-1]\n";
+		}
+	}
+);
+
+# print restrictions
 my @states = keys %states;
 for my $i ( 0 .. $#states - 1 ) {
 	my @si = split //, $states[$i];
@@ -37,3 +72,7 @@ for my $i ( 0 .. $#states - 1 ) {
 		}
 	}
 }
+
+# print closing commands
+print "iterations -1\n"; # infinite length chain
+print "run\n"; # start sampling
