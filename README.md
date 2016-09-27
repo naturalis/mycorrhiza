@@ -26,6 +26,7 @@ To prepare our input data, we have to do these steps:
    any lines that don't match anything are assumed to be headers or footers and are 
    ignored. When this happens, a warning is emitted by `make_ms_input.pl`, as follows:
    `putative taxon '$taxon' not in tree, ignoring (could also be table header)`
+   Note that you also need to capture STDOUT to make a states file.
 2. Then we create the BayesTraits/MultiState commands for restricting the transitions as
    per the general idea described above. These commands will also ensure that the run is
    done using reversible jump MCMC. Whether or not you use a hyperprior depends on whether
