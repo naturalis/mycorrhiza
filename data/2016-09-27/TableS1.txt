@@ -1,4 +1,4 @@
-species	A	B	G	M
+788	4 (A B G M)
 Anthoceros_agrestis	0	0	1	1
 Anthoceros_fusiformis	0	0	0	1
 Anthoceros_lamellatus	0	0	1	1
