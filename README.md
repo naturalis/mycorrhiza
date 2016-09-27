@@ -47,9 +47,4 @@ TableS1.txt
 To run an analysis like this, we have to do the following steps:
 
 1. install a Quad version of BayesTraits. This has higher precision to prevent underflows.
-2. open the program, i.e. `BayesTraitsQuad <tree> <data>`
-3. select 'Multistate'
-4. select 'MCMC'
-5. specify RJ priors, e.g. `RevJump exp 10` or `RJHP exp 0 100` (question: which one?)
-6. paste the restrictions from `data/*/restrictions.txt` into the program
-7. `run`
+2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree> <data> < restrictions.txt`
