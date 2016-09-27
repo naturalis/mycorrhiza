@@ -79,15 +79,6 @@ for my $tip ( @{ $tree->get_terminals } ) {
 }
 $tree->prune_tips(\@prune);
 
-# label tree nodes
-my $n = 0;
-$tree->visit_depth_first( 
-	'-pre' => sub {
-		my $node = shift;
-		$node->set_name( 'n' . ++$n ) if $node->is_internal;
-	}
-);
-
 # write data output
 {
 	$log->info("going to write data to '$out_data'");
