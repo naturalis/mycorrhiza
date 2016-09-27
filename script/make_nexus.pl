@@ -59,12 +59,12 @@ my $matrix = $fac->create_matrix(
 		}
 
 		# parse character sequence
-		my ( $name, $seq ) = split /\s+/, $_;
+		my ( $name, @seq ) = split /\s+/, $_;
 		$matrix->insert( $fac->create_datum(
 			'-type_object' => $to,
 			'-name'        => $name,
 			'-taxon'       => $taxa->get_by_name($name),
-			'-char'        => [ split //, $seq ],
+			'-char'        => \@seq,
 		) );
 
 	}

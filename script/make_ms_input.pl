@@ -50,8 +50,9 @@ my ( %data, %seen );
 	open my $fh, '<', $data_file or die $!;
 	while(<$fh>) {
 		chomp;
-		my ( $taxon, $states ) = split /\s+/, $_;
+		my ( $taxon, @states ) = split /\s+/, $_;
 		if ( $tree->get_by_name( $taxon ) ) {
+			my $states = join '', @states;
 			$data{$taxon} = $seen{$states} || ( $seen{$states} = shift @alpha );
 		}
 		else {
