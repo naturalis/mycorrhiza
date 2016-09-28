@@ -81,3 +81,13 @@ To run an analysis like this, we have to do the following steps:
 
 1. install a Quad version of BayesTraits. This has higher precision to prevent underflows.
 2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
+
+## Post-analysis processing
+
+Once the analysis is completed we will have a large file with samples of rates from the Q
+matrix and samples of states at the various internal nodes. As far as I know right now we
+don't have to do any hypothesis testing of the rates (e.g. we think it went from this to 
+that more so than vice versa), rather, we will want to have estimates for the interior 
+nodes and the root. Presumably these will have to be visualized using likelihood pies and
+colored branches. Perhaps we will have some use out of the earlier work done for 
+[naturalis/asterid-phylo-comp](http://github.com/naturalis/asterid-phylo-comp).
