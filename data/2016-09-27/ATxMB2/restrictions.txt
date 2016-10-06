@@ -866,5 +866,5 @@ Restrict qHC 0
 Restrict qCH 0
 Restrict qGC 0
 Restrict qCG 0
-iterations -1
+iterations 10000000
 run
