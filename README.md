@@ -57,10 +57,15 @@ would be:
 Then we create the BayesTraits/MultiState commands for restricting the transitions as
 per the general idea described above. These commands will also ensure that the run is
 done using reversible jump MCMC. Whether or not you use a hyperprior depends on whether
-the script `make_restrictions.pl` was invoked with the `--hyper` flag. It is probably
-a good idea to do this, so the full command would be:
+the script `make_restrictions.pl` was invoked with the `--hyper` flag. It is probably a 
+good idea to do this. In addition, by default, the command file will configure a chain 
+with 'infinite' iterations (i.e. -1) that needs to be interrupted manually. If you have 
+a better idea about the number of iterations it is worth specifying that. A conservative
+estimate for the present project is 10*10^6 generations, of which we will want to discard
+up to 50% burnin (in one case this appeared to be necessary). Hence, the full command 
+would be:
 
-    make_restrictions.pl -s <states> -t <outtree> --hyper
+    make_restrictions.pl -s <states> -t <outtree> [-i <iterations>] [--hyper]
    
 Once this is done we should have a tree file in Nexus format, a data file in tab-separated
 spreadsheet format, and a text file with the restriction commands. You can now run the
