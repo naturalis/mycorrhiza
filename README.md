@@ -62,10 +62,11 @@ good idea to do this. In addition, by default, the command file will configure a
 with 'infinite' iterations (i.e. -1) that needs to be interrupted manually. If you have 
 a better idea about the number of iterations it is worth specifying that. A conservative
 estimate for the present project is 10*10^6 generations, of which we will want to discard
-up to 50% burnin (in one case this appeared to be necessary). Hence, the full command 
-would be:
+up to 50% burnin (in one case this appeared to be necessary). Lastly, it might make sense
+to indicate how many cores you have available for the analysis, although this only works 
+for multi-core (e.g. OpenMP) versions. Hence, the full command would be:
 
-    make_restrictions.pl -s <states> -t <outtree> [-i <iterations>] [--hyper]
+    make_restrictions.pl -s <states> -t <outtree> [-i <iterations>] [-c <cores>] [--hyper]
    
 Once this is done we should have a tree file in Nexus format, a data file in tab-separated
 spreadsheet format, and a text file with the restriction commands. You can now run the

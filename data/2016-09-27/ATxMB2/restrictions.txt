@@ -867,4 +867,5 @@ Restrict qCH 0
 Restrict qGC 0
 Restrict qCG 0
 iterations 10000000
+cores 4
 run

@@ -7,11 +7,13 @@ use Bio::Phylo::IO 'parse_tree';
 # process command line arguments
 my ( $states, $tree, $hyper );
 my $iterations = -1;
+my $cores;
 GetOptions(
 	'states=s'     => \$states,
 	'tree=s'       => \$tree,
 	'hyper'        => \$hyper,
 	'iterations=i' => \$iterations,
+	'cores=i'      => \$cores,
 );
 
 # read tree
@@ -77,4 +79,5 @@ for my $i ( 0 .. $#states - 1 ) {
 
 # print closing commands
 print "iterations $iterations\n"; # default is infinity, reasonable is 10*10^6
+print "cores $cores\n" if defined $cores; # only for multi-core, e.g. OpenMP
 print "run\n"; # start sampling
