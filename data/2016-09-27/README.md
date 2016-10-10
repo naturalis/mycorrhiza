@@ -1,6 +1,6 @@
 The subdirectories below this directory contain different rootings of the same tree. 
 The same comparative analyses on the same data are to be performed for each rooting. 
-The directory names correspond with the following rootings:
+The directory names correspond with the following topologies:
 
 - `Abasal2` = (Anthocerotophyta, (rest)): Hornworts basal.
 - `Mbasal2` = (Marchantiophyta, (rest)): Liverworts basal.
