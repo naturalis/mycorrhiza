@@ -8,12 +8,18 @@ use Bio::Phylo::IO 'parse_tree';
 my ( $states, $tree, $hyper );
 my $iterations = -1;
 my $cores;
+my @fossil;
+my @restrict;
+my $stones;
 GetOptions(
 	'states=s'     => \$states,
 	'tree=s'       => \$tree,
 	'hyper'        => \$hyper,
 	'iterations=i' => \$iterations,
 	'cores=i'      => \$cores,
+	'fossil=s'     => \@fossil,   # tip1,tip2=value
+	'restrict=s'   => \@restrict, # qAB=qBA or qAB=0
+	'stones=s'     => \$stones,   # min,max
 );
 
 # read tree
@@ -32,7 +38,6 @@ my %states;
 		$states{$state} = $alias;
 	}
 }
-
 
 # print first commands header
 print "1\n"; # multistate
@@ -77,7 +82,37 @@ for my $i ( 0 .. $#states - 1 ) {
 	}
 }
 
+# print additional restrictions
+for my $r ( @restrict ) {
+	my ( $rate, $value ) = split /=/, $r;
+	print "Restrict ${rate} ${value}\n";
+}
+
+# print fossils here
+for my $f ( @fossil ) {
+	my ( $tips, $value ) = split /=/, $f;
+	my @tips;
+	for my $tip ( split /,/, $tips ) {
+		if ( my $n = $t->get_by_name($tip) ) {
+			push @tips, $n;
+		}
+		else {
+			warn "$tip is not in the tree!";
+		}
+	}
+	if ( @tips == 2 ) {
+		my $mrca  = $t->get_mrca(\@tips)->get_internal_name;
+		my $left  = $tips[0]->get_name;
+		my $right = $tips[1]->get_name;
+		print "Fossil ${mrca} ${value} ${left} ${right}\n"; 
+	}
+}
+
 # print closing commands
 print "iterations $iterations\n"; # default is infinity, reasonable is 10*10^6
 print "cores $cores\n" if defined $cores; # only for multi-core, e.g. OpenMP
+if ( $stones ) {
+	$stones =~ s/,/ /;
+	print "stones $stones\n";
+}
 print "run\n"; # start sampling
