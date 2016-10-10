@@ -1,13 +1,13 @@
-The subdirectories below this directory contain different rootings of the same tree, 
-and the same comparative analyses on the same data are to be performed for each. The
-code names correspond with the following rootings:
+The subdirectories below this directory contain different rootings of the same tree. 
+The same comparative analyses on the same data are to be performed for each rooting. 
+The directory names correspond with the following rootings:
 
 - `Abasal2` = (Anthocerotophyta, (rest)): Hornworts basal.
 - `Mbasal2` = (Marchantiophyta, (rest)): Liverworts basal.
 - `Tbasal` = (Tracheophyta, (rest)): Vascular plants basal; mosses, hornworts and liverworts in a monophyletic group.
 - `ATxMB2` = ((Anthocerotophyta,Tracheophyta),(Marchantiophyta,Bryophyta))
 
-These four different rootings or rearrangements at the base if the tree that reflect
+These four different topologies are rearrangements at the base of the tree that reflect
 different opinions about how land plants are supposed to be rooted. However, the consensus 
 among plant systematists is that `Mbasal2` is the best supported rooting.
 
@@ -23,6 +23,6 @@ pattern is defined in the file `states.tsv` in each directory.
 
 The file `restrictions.txt` shows the commands that are executed by BayesTraits. These include:
 - node/MRCA definitions for all nodes so that their sampled states are reported in the log and can,
-  once the analyses are done, used to create a pie chart with the different states for each node;
+  once the analyses are done, be used to create a pie chart with the different states for each node;
 - restrictions because we disallow transitions where more than 1 gain and/or loss happens simultaneously;
 - the commands to do an RJ-MCMC multistate analysis on four cores, running for 10 million generations.
