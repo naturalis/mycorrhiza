@@ -6,6 +6,7 @@ Directory structure:
 
 - data: contains verbatim input data and pruned/converted versions thereof
 - script: contains conversion scripts
+- doc: supporting documentation
 
 ## Preamble: restricting the number of transitions, the general idea
 
