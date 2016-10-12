@@ -1,6 +1,6 @@
 1
 2
-RJHP exp 0 100
+RJHP exp 0 0.5
 AddMRCA Node808 Anthoceros_laminiferus Anthoceros_punctatus
 AddMRCA Node806 Anthoceros_agrestis Anthoceros_punctatus
 AddMRCA Node804 Anthoceros_lamellatus Anthoceros_punctatus
@@ -866,6 +866,6 @@ Restrict qHC 0
 Restrict qCH 0
 Restrict qGC 0
 Restrict qCG 0
-iterations 10000000
+iterations 1000000
 cores 4
 run
