@@ -67,7 +67,9 @@ up to 50% burnin (in one case this appeared to be necessary). Lastly, it might m
 to indicate how many cores you have available for the analysis, although this only works 
 for multi-core (e.g. OpenMP) versions. Hence, the full command would be:
 
-    make_restrictions.pl -s <states> -t <outtree> [-i <iterations>] [-c <cores>] [--hyper]
+    make_restrictions.pl -states <states.tsv> -tree <outtree> [-iterations <iterations>] 
+    [-cores <cores>] [-hyper <min,max>] [-fossil <tip1,tip2=value>] [-restrict <qAB=qBA>]
+    [-stones <min,max>]
    
 Once this is done we should have a tree file in Nexus format, a data file in tab-separated
 spreadsheet format, and a text file with the restriction commands. You can now run the
@@ -92,9 +94,7 @@ To run an analysis like this, we have to do the following steps:
 ## Post-analysis processing
 
 Once the analysis is completed we will have a large file with samples of rates from the Q
-matrix and samples of states at the various internal nodes. As far as I know right now we
-don't have to do any hypothesis testing of the rates (e.g. we think it went from this to 
-that more so than vice versa), rather, we will want to have estimates for the interior 
-nodes and the root. Presumably these will have to be visualized using likelihood pies and
-colored branches. Perhaps we will have some use out of the earlier work done for 
+matrix and samples of states at the various internal nodes. Presumably these will have to 
+be visualized using likelihood pies and colored branches. Perhaps we will have some use 
+out of the earlier work done for 
 [naturalis/asterid-phylo-comp](http://github.com/naturalis/asterid-phylo-comp).
