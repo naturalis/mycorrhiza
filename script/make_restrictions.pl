@@ -14,7 +14,7 @@ my $stones;
 GetOptions(
 	'states=s'     => \$states,
 	'tree=s'       => \$tree,
-	'hyper'        => \$hyper,
+	'hyper=s'      => \$hyper, # min,max
 	'iterations=i' => \$iterations,
 	'cores=i'      => \$cores,
 	'fossil=s'     => \@fossil,   # tip1,tip2=value
@@ -42,7 +42,8 @@ my %states;
 # print first commands header
 print "1\n"; # multistate
 print "2\n"; # MCMC
-print $hyper ? "RJHP exp 0 100\n" : "RevJump exp 10\n"; # hyperprior drawn from 0..100?
+$hyper =~ s/,/ /;
+print $hyper ? "RJHP exp $hyper\n" : "RevJump exp 10\n"; # hyperprior drawn from 0..100?
 
 # print node statements
 $t->visit_depth_first(
