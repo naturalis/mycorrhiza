@@ -869,5 +869,5 @@ Restrict qCG 0
 Restrict qFK 0
 iterations 1000000
 cores 4
-stones 100 10_000
+stones 100 10000
 run
