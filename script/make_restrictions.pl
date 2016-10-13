@@ -102,9 +102,9 @@ for my $f ( @fossil ) {
 		}
 	}
 	if ( @tips == 2 ) {
-		my $mrca  = $t->get_mrca(\@tips)->get_internal_name;
 		my $left  = $tips[0]->get_name;
-		my $right = $tips[1]->get_name;
+		my $right = $tips[1]->get_name;	
+		my $mrca  = $t->get_mrca(\@tips)->get_internal_name;
 		print "Fossil ${mrca} ${value} ${left} ${right}\n"; 
 	}
 }
