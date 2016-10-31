@@ -11,6 +11,7 @@ my $cores;
 my @fossil;
 my @restrict;
 my $stones;
+my $newapi;
 GetOptions(
 	'states=s'     => \$states,
 	'tree=s'       => \$tree,
@@ -20,6 +21,7 @@ GetOptions(
 	'fossil=s'     => \@fossil,   # tip1,tip2=value
 	'restrict=s'   => \@restrict, # qAB=qBA or qAB=0
 	'stones=s'     => \$stones,   # min,max
+	'newapi'       => \$newapi,   # whether to use the tagging syntax
 );
 
 # read tree
@@ -59,7 +61,13 @@ $t->visit_depth_first(
 				push @tips, @{ $c->get_generic('tips') };
 			}
 			$node->set_generic( 'tips' => \@tips );
-			print "AddMRCA $name $tips[0] $tips[-1]\n";
+			if ( $newapi ) {
+				print "AddTag ${name}Tag @tips\n";
+				print "AddMRCA ${name} ${name}Tag\n";
+			}
+			else {			
+				print "AddMRCA $name $tips[0] $tips[-1]\n";
+			}
 		}
 	}
 );
