@@ -113,7 +113,12 @@ for my $f ( @fossil ) {
 		my $left  = $tips[0]->get_name;
 		my $right = $tips[1]->get_name;	
 		my $mrca  = $t->get_mrca(\@tips)->get_internal_name;
-		print "Fossil ${mrca} ${value} ${left} ${right}\n"; 
+		if ( $newapi ) {
+			print "Fossil ${mrca} ${mrca}Tag ${value}\n";
+		}
+		else {
+			print "Fossil ${mrca} ${value} ${left} ${right}\n"; 
+		}
 	}
 }
 
