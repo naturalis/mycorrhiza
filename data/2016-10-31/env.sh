@@ -6,3 +6,6 @@ export STATES="H G D E"
 # below is the original => new mapping
 # qBA => qGE, qDC => qHD, qEI => qBC, qFK => qIJ, qGH => qAF
 export RATES="qGE qHD qBC qIJ qAF"
+
+export LEFT=Treubia_lacunosa
+export RIGHT=Quercus_rubra
