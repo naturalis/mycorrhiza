@@ -60,6 +60,9 @@ my $matrix = $fac->create_matrix(
 
 		# parse character sequence
 		my ( $name, @seq ) = split /\s+/, $_;
+		if ( @seq == 1 && length($seq[0]) > 1 ) {
+			@seq = split //, $seq[0];
+		}
 		$matrix->insert( $fac->create_datum(
 			'-type_object' => $to,
 			'-name'        => $name,
