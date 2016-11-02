@@ -18,43 +18,51 @@ BT=BT3.0-OSX-openMP
 # iterate over rates from env.sh
 for RATE in $RATES; do
 
-	# create the command file, restricting the $RATE to 0
-	perl ../../script/make_restrictions.pl \
-		-states states.tsv \
-		-tree $TREE \
-		-hyper 0,100 \
-		-iterations 1000000 \
-		-cores 4 \
-		-restrict $RATE=0 \
-		-stones 100,200000 \
-		-newapi > restrictions.$RATE.0.txt
+	# don't re-run
+	if [ ! -e $DATA.log.txt.Stones.$RATE.0.txt ]; then
+
+		# create the command file, restricting the $RATE to 0
+		perl ../../script/make_restrictions.pl \
+			-states states.tsv \
+			-tree $TREE \
+			-hyper 0,100 \
+			-iterations 1000000 \
+			-cores 4 \
+			-restrict $RATE=0 \
+			-stones 100,200000 \
+			-newapi > restrictions.$RATE.0.txt
 		
-	# run the analysis
-	$BT $TREE $DATA < restrictions.$RATE.0.txt
+		# run the analysis
+		$BT $TREE $DATA < restrictions.$RATE.0.txt
 	
-	# rename log and stones file so it's not overwritten
-	mv $DATA.log.txt $DATA.log.$RATE.0.txt
-	mv $DATA.log.txt.Stones.txt $DATA.log.txt.Stones.$RATE.0.txt
+		# rename log and stones file so it's not overwritten
+		mv $DATA.log.txt $DATA.log.$RATE.0.txt
+		mv $DATA.log.txt.Stones.txt $DATA.log.txt.Stones.$RATE.0.txt
+	fi
 done
 
 # iterate over states from env.sh
 for STATE in $STATES; do
 
-	# create the command file, fixing the fossil root to $STATE
-	perl ../../script/make_restrictions.pl \
-		-states states.tsv \
-		-tree $TREE \
-		-hyper 0,100 \
-		-iterations 1000000 \
-		-cores 4 \
-		-fossil $LEFT,$RIGHT=$STATE \
-		-stones 100,200000 \
-		-newapi > restrictions.root.$STATE.txt
+	# don't re-run
+	if [ ! -e $DATA.log.txt.Stones.root.$STATE.txt ]; then
+
+		# create the command file, fixing the fossil root to $STATE
+		perl ../../script/make_restrictions.pl \
+			-states states.tsv \
+			-tree $TREE \
+			-hyper 0,100 \
+			-iterations 1000000 \
+			-cores 4 \
+			-fossil $LEFT,$RIGHT=$STATE \
+			-stones 100,200000 \
+			-newapi > restrictions.root.$STATE.txt
 		
-	# run the analysis
-	$BT $TREE $DATA < restrictions.root.$STATE.txt
+		# run the analysis
+		$BT $TREE $DATA < restrictions.root.$STATE.txt
 	
-	# rename log and stones file so it's not overwritten
-	mv $DATA.log.txt $DATA.log.root.$STATE.txt
-	mv $DATA.log.txt.Stones.txt $DATA.log.txt.Stones.root.$STATE.txt
+		# rename log and stones file so it's not overwritten
+		mv $DATA.log.txt $DATA.log.root.$STATE.txt
+		mv $DATA.log.txt.Stones.txt $DATA.log.txt.Stones.root.$STATE.txt
+	fi
 done
