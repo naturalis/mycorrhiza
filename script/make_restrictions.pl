@@ -12,6 +12,7 @@ my @fossil;
 my @restrict;
 my $stones;
 my $newapi;
+my $allowmulti;
 GetOptions(
 	'states=s'     => \$states,
 	'tree=s'       => \$tree,
@@ -22,6 +23,7 @@ GetOptions(
 	'restrict=s'   => \@restrict, # qAB=qBA or qAB=0
 	'stones=s'     => \$stones,   # min,max
 	'newapi'       => \$newapi,   # whether to use the tagging syntax
+	'allowmulti'   => \$allowmulti,
 );
 
 # read tree
@@ -73,20 +75,22 @@ $t->visit_depth_first(
 );
 
 # print restrictions
-my @states = keys %states;
-for my $i ( 0 .. $#states - 1 ) {
-	my @si = split //, $states[$i];
-	my $ai = $states{$states[$i]};
-	for my $j ( $i + 1 .. $#states ) {
-		my $aj = $states{$states[$j]};
-		my @sj = split //, $states[$j];
-		my $diffs = 0;
-		for my $k ( 0 .. $#sj ) {
-			$diffs += abs( $si[$k] - $sj[$k] );
-		}
-		if ( $diffs > 1 ) {
-			print "Restrict q${ai}${aj} 0\n";
-			print "Restrict q${aj}${ai} 0\n";
+if ( not $allowmulti ) {
+	my @states = keys %states;
+	for my $i ( 0 .. $#states - 1 ) {
+		my @si = split //, $states[$i];
+		my $ai = $states{$states[$i]};
+		for my $j ( $i + 1 .. $#states ) {
+			my $aj = $states{$states[$j]};
+			my @sj = split //, $states[$j];
+			my $diffs = 0;
+			for my $k ( 0 .. $#sj ) {
+				$diffs += abs( $si[$k] - $sj[$k] );
+			}
+			if ( $diffs > 1 ) {
+				print "Restrict q${ai}${aj} 0\n";
+				print "Restrict q${aj}${ai} 0\n";
+			}
 		}
 	}
 }
@@ -114,7 +118,7 @@ for my $f ( @fossil ) {
 		my $right = $tips[1]->get_name;	
 		my $mrca  = $t->get_mrca(\@tips)->get_internal_name;
 		if ( $newapi ) {
-			print "Fossil ${mrca} ${mrca}Tag ${value}\n";
+			print "Fossil ${mrca}Fixed ${mrca}Tag ${value}\n";
 		}
 		else {
 			print "Fossil ${mrca} ${value} ${left} ${right}\n"; 
