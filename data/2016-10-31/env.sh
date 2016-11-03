@@ -1,5 +1,6 @@
 # This file is meant to be sourced so that that root states and rates 
 # to restrict are part of the environment
+# D => H, B => G, C => D, A => E
 export STATES="H G D E"
 
 # between 2016-09-27 and 2016-10-31 the multistate coding has changed,
