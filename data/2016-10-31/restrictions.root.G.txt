@@ -1541,7 +1541,7 @@ Restrict qFD 0
 Restrict qDF 0
 Restrict qAD 0
 Restrict qDA 0
-Fossil Node738 Node738Tag G
+Fossil Node738Fixed Node738Tag G
 iterations 1000000
 cores 4
 stones 100 200000
