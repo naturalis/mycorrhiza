@@ -26,24 +26,18 @@ for RUN in $RUNS; do
 		mkdir $RUN
 	fi
 
-	# iterate over rates from env.sh
-	for RATE in $RATES; do
+	# iterate over states from env.sh
+	for STATE in $STATES; do
 
 		# don't re-run
-		if [ ! -e $DATA.log.txt.Stones.$RATE.0.txt ]; then
+		if [ ! -e $DATA.log.txt.Stones.root.$STATE.txt ]; then
 		
 			# run the analysis
-			$BT $TREE $DATA < restrictions.$RATE.0.txt
+			$BT $TREE $DATA < restrictions.root.$STATE.txt
 	
 			# rename log and stones file so it's not overwritten
-			mv $DATA.log.txt $RUN/$DATA.log.$RATE.0.txt
-			mv $DATA.log.txt.Stones.txt $RUN/$DATA.log.txt.Stones.$RATE.0.txt
+			mv $DATA.log.txt $RUN/$DATA.log.root.$STATE.txt
+			mv $DATA.log.txt.Stones.txt $RUN/$DATA.log.txt.Stones.root.$STATE.txt
 		fi
 	done
-	
-	# do the unconstrained run
-	$BT $TREE $DATA < unconstrained.txt
-	mv $DATA.log.txt $RUN/$DATA.log.unconstrained.txt
-	mv $DATA.log.txt.Stones.txt $RUN/$DATA.log.txt.Stones.unconstrained.txt
-	
 done
