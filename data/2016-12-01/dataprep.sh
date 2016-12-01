@@ -55,7 +55,7 @@ perl $SCRIPT/make_restrictions.pl \
 # we will do three runs for each command file
 RUNS="run1 run2 run3"
 for RUN in $RUNS; do
-	echo "#!/bin/bash" >> $RUN.sh
+	echo "#!/bin/bash" > $RUN.sh
 	echo "mkdir $RUN"  >> $RUN.sh
 	echo "cp $TREE $RUN" >> $RUN.sh
 	echo "cp $DATA.tsv $RUN" >> $RUN.sh
