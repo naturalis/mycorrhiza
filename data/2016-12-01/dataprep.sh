@@ -62,8 +62,10 @@ for RUN in $RUNS; do
 	echo "cd $RUN" >> $RUN.sh
 	echo "$BT $TREE $DATA.tsv < ../unconstrained.txt" >> $RUN.sh
 	echo "mv $DATA.tsv.log.txt $DATA.unconstrained.log" >> $RUN.sh
+	echo "mv $DATA.tsv.log.txt.Stones.txt $DATA.unconstrained.Stones.txt" >> $RUN.sh
 	for CODE in $CODES; do
 		echo "$BT $TREE $DATA.tsv < ../constrained.qH${CODE}.0.txt" >> $RUN.sh
 		echo "mv $DATA.tsv.log.txt $DATA.qH${CODE}.0.log" >> $RUN.sh
+		echo "mv $DATA.tsv.log.txt.Stones.txt $DATA.qH${CODE}.0.Stones.txt" >> $RUN.sh
 	done
 done
