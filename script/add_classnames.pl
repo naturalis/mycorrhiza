@@ -11,7 +11,7 @@ my ( $csv, $treefile );
 GetOptions(
 	'csv=s'  => \$csv,
 	'tree=s' => \$treefile,
-)
+);
 
 # Read tree file
 my $tree = parse_tree(
