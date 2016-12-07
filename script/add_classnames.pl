@@ -1,24 +1,25 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Bio::Phylo::IO 'parse_tree';
+use Getopt::Long;
+use Bio::Phylo::Treedrawer;
+use Bio::Phylo::IO qw'parse_tree unparse';
+use Bio::Phylo::Util::CONSTANT qw':objecttypes :namespaces';
 
-# process command line arguments
+# Process command line arguments
 my ( $csv, $treefile );
 GetOptions(
-  'csv=s'  => \$csv,
-  'tree=s' => \$treefile,
-);
+	'csv=s'  => \$csv,
+	'tree=s' => \$treefile,
+)
 
-# Data can be read from url, handle, file or string. 
-# This example uses the *DATA pseudo-handle that gives
-# access to the contents at the bottom of this file.
+# Read tree file
 my $tree = parse_tree(
 	'-format' => 'newick',
-	'-file'   => $treefile,
+	'-handle' => $treefile,
 );
 
-# Read classes.csv and attach class names to tips
+# Read class.csv, attach class names to tips
 open my $fh, '<', $csv or die $!;
 while(<$fh>) {
 	chomp;
@@ -30,7 +31,7 @@ while(<$fh>) {
 	}
 }
 
-# Carry over class names from tips to root
+# Carry class names from tips to root
 $tree->visit_depth_first(
 	'-post' => sub {
 		my $node = shift;
@@ -46,7 +47,10 @@ $tree->visit_depth_first(
 	}
 );
 
-# Identify monophyletic classes from root to tips
+# Need to attach the NHX namespace
+$tree->set_namespaces( 'nhx' => _NS_NHX_ );
+
+# Find monophyletic class names from root to tips
 $tree->visit_depth_first(
 	'-pre' => sub {
 		my $node = shift;
@@ -55,7 +59,7 @@ $tree->visit_depth_first(
 				my $pclass = $parent->get_generic('class') || {};
 				if ( scalar(keys(%$class)) == 1 && scalar(keys(%$pclass)) > 1 ) {
 					my ($name) = keys %$class;
-					$node->set_name($name);
+					$node->set_meta_object( 'nhx:class' => $name );
 					warn $name;
 				}
 			}
@@ -63,4 +67,11 @@ $tree->visit_depth_first(
 	}
 );
 
-print $tree->to_newick( '-nodelabels' => 1 );
+# Remove generic annotations to remove NHX serialization
+$tree->visit(sub{shift->set_generic('class'=>undef)});
+
+# Write to New Hampshire eXtended
+print unparse(
+	'-phylo'  => $tree,
+	'-format' => 'nhx',
+);
