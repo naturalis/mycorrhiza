@@ -8,6 +8,27 @@ Directory structure:
 - script: contains conversion scripts
 - doc: supporting documentation
 
+# Goals
+
+The general aims of this project, and the usage that the files in this repository are put
+to, are:
+
+- For the four possible rootings (identified as `ABasal`, `ATxMB`, `MBasal`, and `TBasal`)
+  to reconstruct the root states. These will be visualized as likelihood pies for the four
+  root nodes.
+- For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
+  nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
+- For the state transitions on the preferred rooting to be visualized somehow, for example
+  as [communicating compartments](results/IMG_1732.jpg) or as a 
+  [circos-style graph](doc/circos.jpg) (for the latter, we'd have to use D3, not circos,
+  because in- and outflows need different sizes).
+
+The most computationally intensive steps that need to be taken involve ancestral state
+reconstruction. In a previous iteration, Frida had done this using a dispersal model where
+state changes were modeled as migrations. Here we will instead do the analysis in a more
+standard way, using [BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so 
+that each state change is a transition that is modeled in a Q matrix.
+
 ## Preamble: restricting the number of transitions, the general idea
 
 Because different higher taxa among the mycorrhiza can associate with land plants in 
@@ -33,7 +54,7 @@ outlined below. Note that this assumes the following about the data:
    e.g. using FigTree, Mesquite, etc.
 2. The input data are a tabular file that must meet the following requirements: line 
    breaks in UNIX format, a single header line that at least enumerates all state symbols
-   as a space-separated list between parenthesis, all subsequent lines start with the 
+   as a space-separated list between parentheses, all subsequent lines start with the 
    taxon name (spelled exactly the same as in the tree, including underscores for spaces),
    then one or more spaces (can be tabs), then the states, which can either be a single
    string or space (tab) separated.
@@ -73,7 +94,8 @@ for multi-core (e.g. OpenMP) versions. Hence, the full command would be:
    
 Once this is done we should have a tree file in Nexus format, a data file in tab-separated
 spreadsheet format, and a text file with the restriction commands. You can now run the
-analysis, as per the instructions below.
+analysis, as per the instructions below, or explore your data first in Mesquite to do a
+visual check to see if it looks sane (probably a good idea).
 
 ## Exploring your data
 
@@ -84,11 +106,15 @@ TableS1.txt. The full command would be:
 
     make_nexus.pl -d <indata> -t <outtree> > <outdata.nex>
 
+You can then open this file in Mesquite and trace the character state changes (as 
+reconstructed under maximum parsimony) on the tree topology.
+
 ## Running an analysis
 
 To run an analysis like this, we have to do the following steps:
 
-1. install a Quad version of BayesTraits. This has higher precision to prevent underflows.
+1. install a Quad version of BayesTraits. This has higher precision to prevent underflows,
+   which are somewhat possible because of the relatively large Q matrix.
 2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
 
 ## Post-analysis processing
