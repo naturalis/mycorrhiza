@@ -1,0 +1,38 @@
+INFO  [../../../script//make_ms_input.pl 36] - going to read tree 'Tree.nex' as nexus
+INFO  [../../../script//make_ms_input.pl 43] - read tree 'Bio::Phylo::Forest::Tree=SCALAR(0x7f8689053910)' with 759 tips
+INFO  [../../../script//make_ms_input.pl 49] - going to read tabular data from '../HostFungusAssociations.txt'
+WARN  [../../../script//make_ms_input.pl 59] - putative taxon '732' not in tree, ignoring (could also be table header)
+INFO  [../../../script//make_ms_input.pl 62] - read 9 states for 730 taxa
+INFO  [../../../script//make_ms_input.pl 65] - going to print state mappings to STDOUT:
+INFO  [../../../script//make_ms_input.pl 71] - going to prune tips without data from tree
+WARN  [../../../script//make_ms_input.pl 76] - 'Treubia_lacunosoides' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Amborella_trichopoda' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Dioon_edule' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Zamia_pumila' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Isoetes_flaccida' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Selaginella_moellendorffii' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Selaginella_uncinata' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Anthoceros_angustus' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Osmundastrum_cinnamomeum' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Equisetum_hyemale' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Mankyua_chejuensis' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Nothoceros_aenigmaticus' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Lygodium_japonicum' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Dipteris_conjugata' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Equisetum_arvense' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Angiopteris_angustifolia' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Angiopteris_evecta' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Ophioglossum_californicum' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Plagiogyria_glauca' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Pteridium_aquilinum' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Alsophila_spinulosa' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Adiantum_capillus_veneris' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Myriopteris_lindheimeri' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Ceratopteris_richardii' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Lobelia_dortmanna' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Cystopteris_protrusa' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Pinus_contorta' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Polypodium_glycyrrhiza' has no data, pruning
+WARN  [../../../script//make_ms_input.pl 76] - 'Carex_hirta' has no data, pruning
+INFO  [../../../script//make_ms_input.pl 84] - going to write data to '../HostFungusAssociations.txt.tsv'
+INFO  [../../../script//make_ms_input.pl 94] - going to write tree to 'Tree.nex.bt.nex'
