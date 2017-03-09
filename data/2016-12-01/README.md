@@ -16,19 +16,20 @@ The original character state matrix by Frida, in a non-standard, pseudo-tabular 
 ### [HostFungusAssociations.txt.tsv](HostFungusAssociations.txt.tsv)
 
 The character matrix recoded for input in BayesTraits. This has undergone the following 
-modifications: 
+modifications:
+ 
 1. the sequences of four 0/1 switches that code for the absence/presence of associations
    with the four major groups of mycorrhiza (A, B, G, and M) have been recoded into single
    letter codes. The mapping between these is in [states.tsv](states.tsv). 
-2. the updated table omits two species (**Lobelia dortmanna** and **Pinus contorta**) that 
+2. the updated table omits two species (_Lobelia dortmanna_ and _Pinus contorta_) that 
    had singleton observations (1010 and 1101) that needlessly complicated the Q matrix.
    
 ### [Mbasal_mod1.bt.rescaled.nex](Mbasal_mod1.bt.rescaled.nex)
 
 The consensus tree file of a BEAST run with the preferred rooting (this rooting is coded 
 as `Mbasal` with this project). This tree has been modified further to remove the two taxa 
-that were also removed from the character state matrix: **Lobelia dortmanna** and 
-**Pinus contorta**.
+that were also removed from the character state matrix: _Lobelia dortmanna_ and 
+_Pinus contorta_.
 
 Shell scripts and command files
 -------------------------------
@@ -44,6 +45,7 @@ script then invokes [make_restrictions.pl](../../script/make_restrictions.pl) to
 command files for BayesTraits (which are simply piped into STDIN of the executable). The
 invocations are first done four times to constrain the analyses to disallow the following 
 transitions, respectively: 
+
 - `0000 => 0001` - [constrained.qHG.0.txt](constrained.qHG.0.txt)
 - `0000 => 0010` - [constrained.qHD.0.txt](constrained.qHD.0.txt)
 - `0000 => 0100` - [constrained.qHB.0.txt](constrained.qHB.0.txt)
