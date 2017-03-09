@@ -9,16 +9,15 @@ use Bio::Phylo::Treedrawer;
 use Bio::Phylo::IO 'parse';
 use Bio::Phylo::Util::Logger ':levels';
 use Bio::Phylo::Util::CONSTANT ':objecttypes';
-use Color::Spectrum qw(hsi2rgb rgb2hsi);
 
 # process command line arguments
 my $verbosity = WARN;
 my ( @assoc, $logfile, $treefile, $statesfile, $datafile, $width, $height, $burnin );
 GetOptions(
 	'verbose+' => \$verbosity,
-	'assoc=s'  => sub { my $string = pop; @assoc = split /,/, $string },
-	'tree=s'   => \$treefile,
-	'states=s' => \$statesfile,
+	'assoc=s'  => sub { my $string = pop; @assoc = split /,/, $string }, # fungal taxa
+	'tree=s'   => \$treefile, # input tree in nexus format
+	'states=s' => \$statesfile, # states.tsv file
 	'log=s'    => \$logfile,
 	'data=s'   => \$datafile,
 	'width=i'  => \$width,
@@ -51,7 +50,7 @@ my $draw = Bio::Phylo::Treedrawer->new(
 	'-width'  => $width,
 	'-height' => $height,
 	'-shape'  => 'radial',
-	'-mode'   => 'phylo',
+	'-mode'   => 'clado',
 	'-tree'   => $tree,
 	'-node_radius' => 12,
 	'-pie_colors'  => make_colors(),
@@ -132,7 +131,7 @@ for my $n ( values %node ) {
 		$tip->set_branch_color( $color{ $decode{ $code } } );
 		$tip->set_font_style('Italic');
 		$tip->set_font_face('Verdana');
-		$tip->set_font_size(8);
+		$tip->set_font_size(10);
 		$tip->set_radius(0);		
 	}
 }
@@ -141,16 +140,6 @@ for my $n ( values %node ) {
 print $draw->draw;
 
 sub make_colors {
-	my $spec = Color::Spectrum->new;
-
-	# generate as many colors, evenly-spaced over the spectrum between red and fuchsia,
-	# as there are associations. convert these to HSI so that we can then average over
-	# them to mix colors for multiple associations
-	my @primaries;
-	for my $c ( $spec->generate( scalar(@assoc), '#FF0000', '#FF00FF' ) ) {
-		$c =~ s/^#//;
-		push @primaries, [ rgb2hsi( map { hex() / 255 } unpack( 'a2a2a2', $c ) ) ];
-	}	
 
 	# read the states file
 	open my $fh, '<', $statesfile or die $!;
@@ -160,26 +149,29 @@ sub make_colors {
 		
 		# split bit mask, combine all h/s/i values for the primaries that appear
 		my @mask = split //, $v;
-		my ( @h, @s, @i );
 		my $key = '';
 		for my $i ( 0 .. $#mask ) {
 			if ( $mask[$i] ) {
-				push @h, $primaries[$i]->[0];
-				push @s, $primaries[$i]->[1];
-				push @i, $primaries[$i]->[2];
 				$key .= $assoc[$i];
 			}
 		}
 		$key = '-' if not $key;
 		$decode{$k} = $key;
-		if ( @h ) {
-			$color{$key} = sprintf "#%02X%02X%02X",
-				map { int( $_ * 255 +.5) } hsi2rgb( sum(@h)/@h, sum(@s)/@s, sum(@i)/@i );
-        }
-        else {
-        	$color{$key} = "#000000";
-        }
 	}
+	
+	# XXX alert: these colors are now hard-coded to match those in the D3
+	# visualization in results/d3.html
+	%color = (
+		"-"   => "#d16115",
+		"A"   => "#e0cf2c",
+		"AB"  => "#dbdcad",
+		"ABG" => "#5a5f1a",
+		"B"   => "#95a41b",
+		"BG"  => "#5d919e",
+		"G"   => "#6ad6f6",
+		"GM"  => "#21bff3",
+		"M"   => "#18558a",
+	);
 	$log->info("Colors:\n".Dumper(\%color));
 	$log->info("Codes:\n".Dumper(\%decode));
 	return \%color;
