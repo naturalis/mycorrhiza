@@ -12,6 +12,8 @@ use Bio::Phylo::Util::CONSTANT ':objecttypes';
 
 # process command line arguments
 my $verbosity = WARN;
+my $mode = 'clado';
+my %config = ( 'radius' => 12 );
 my ( @assoc, $logfile, $treefile, $statesfile, $datafile, $width, $height, $burnin );
 GetOptions(
 	'verbose+' => \$verbosity,
@@ -23,6 +25,8 @@ GetOptions(
 	'width=i'  => \$width,
 	'height=i' => \$height,
 	'burnin=i' => \$burnin,
+	'mode=s'   => \$mode,
+	'config=s' => \%config,
 );
 
 # these are populated when make_colors() is invoked
@@ -50,10 +54,11 @@ my $draw = Bio::Phylo::Treedrawer->new(
 	'-width'  => $width,
 	'-height' => $height,
 	'-shape'  => 'radial',
-	'-mode'   => 'clado',
+	'-mode'   => $mode,
 	'-tree'   => $tree,
-	'-node_radius' => 12,
-	'-pie_colors'  => make_colors(),
+	'-branch_width' => 5,
+	'-node_radius'  => $config{'radius'},
+	'-pie_colors'   => make_colors(),
 );
 
 # read bayestraits log file
@@ -121,6 +126,13 @@ for my $n ( values %node ) {
 	}
 }
 
+# remove the pies, if requested
+if ( $config{'pies'} eq 'no' ) {
+	for my $n ( values %node ) {
+		$n->set_generic( 'pie' => undef );
+	}
+}
+
 # apply colors for terminal branches
 {
 	open my $fh, '<', $datafile or die $!;
@@ -133,6 +145,13 @@ for my $n ( values %node ) {
 		$tip->set_font_face('Verdana');
 		$tip->set_font_size(10);
 		$tip->set_radius(0);		
+	}
+}
+
+# remove the tip labels, if requested
+if ( $config{'tips'} eq 'no' ) {
+	for my $tip ( @{ $tree->get_terminals } ) {
+		$tip->set_name('');
 	}
 }
 
