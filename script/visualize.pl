@@ -56,7 +56,7 @@ my $draw = Bio::Phylo::Treedrawer->new(
 	'-shape'  => 'radial',
 	'-mode'   => $mode,
 	'-tree'   => $tree,
-	'-branch_width' => 5,
+	'-branch_width' => 6,
 	'-node_radius'  => $config{'radius'},
 	'-pie_colors'   => make_colors(),
 );
