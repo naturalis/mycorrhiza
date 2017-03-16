@@ -1,12 +1,13 @@
 # Comparative analysis of associations between land plants and mycorrhiza
 
 This repository holds data and scripts to analyze associations between land plants and 
-mycorrhiza. This is a collaboration between Vincent Merckx, Frida Feijen and Rutger Vos.
-Directory structure:
+mycorrhiza. This is a collaboration between Vincent Merckx, Frida Feijen, Jorinde Nuytinck
+and Rutger Vos. Directory structure:
 
 - data: contains verbatim input data and pruned/converted versions thereof
 - script: contains conversion scripts
 - doc: supporting documentation
+- results: final output files
 
 # Goals
 
@@ -22,27 +23,52 @@ to, are:
   as [communicating compartments](results/IMG_1732.jpg) or as a 
   [circos-style graph](doc/circos.jpg) (for the latter, we'd have to use D3, not circos,
   because in- and outflows need different sizes).
-
-The most computationally intensive steps that need to be taken involve ancestral state
-reconstruction. In a previous iteration, Frida had done this using a dispersal model where
-state changes were modeled as migrations. Here we will instead do the analysis in a more
-standard way, using [BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so 
-that each state change is a transition that is modeled in a Q matrix.
+- For there to be an enumeration of the most likely scenarios by which the initial 
+  association between mycorrhiza and land plants came about, with their relative support
+  by the data quantified.
+  
+Since phylogenetic inference under different rooting scenarios has already been performed
+by Frida at the outset of the analyses recorded here, the most computationally intensive 
+steps that need to be taken involve ancestral state reconstruction. In a previous 
+iteration, Frida had done this using a dispersal model where state changes were modeled as 
+migrations. Here we will instead do the analysis in a more standard way, using 
+[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so that each state change 
+is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
+so that various hypotheses can be tested using Bayes Factors.
 
 ## Preamble: restricting the number of transitions, the general idea
 
 Because different higher taxa among the mycorrhiza can associate with land plants in 
-different combinations there is potentially a very large number of states, that is,
-permutations of associations. If we treat every permutation of associations as a potential
-state within the context of a phylogenetic comparative analysis we will end up with an
-explosion of parameters in the Q matrix such that the analysis becomes practically 
-intractable. But, we can reduce the number of parameters in the following ways:
+different combinations there is potentially a very large number of states: if we treat 
+every permutation of associations as a potential state within the context of a 
+phylogenetic comparative analysis we will end up with an explosion of parameters in the Q 
+matrix such that the analysis becomes practically intractable. But, we can reduce the 
+number of parameters in the following ways:
 
-1. We only take the empirically observed combinations of observations, not all 
-   permutations.
-2. We disallow transitions where more than one association is gained or lost 
-   instantaneously.
-3. We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
+- We only take the empirically observed combinations of observations, not all 
+  permutations.
+- We disallow transitions where more than one association is gained or lost 
+  instantaneously.
+- We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
+
+## Preamble: the different rootings to consider
+
+Plant systematists assign four different rootings of the land plants enough plausibility
+that we consider them here. These four rootings are intended to orient the following 
+major groups relative to one another: liverworts (_Marchantiophyta_), mosses 
+(_Bryophyta_), hornworts (_Anthocerotophyta_) and vascular plants (_Tracheophyta_).
+
+- `MBasal` - liverworts split off first, followed by mosses, and hornworts are sister to 
+  vascular plants. This yields the following topology: 
+  `(((Anthocerotophyta,Tracheophyta),Bryophyta),Marchantiophyta);`
+  **This is the preferred rooting, which we will explore in more depth than the others.**
+- `ABasal` - hornworts branch off first, yielding the following topology: 
+  `(((Marchantiophyta,Bryophyta),Tracheophyta),Anthocerotophyta);`
+- `TBasal` - vascular plants branch off first, yielding the following topology: 
+  `(((Marchantiophyta,Bryophyta),Anthocerotophyta),Tracheophyta);`
+- `ATxMB` - liverworts and mosses (M,B) form a monophyletic group, and so do
+  hornworts and vascular plants (A,T), resulting in: 
+  `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
 
 ## Preparing the input data
 
