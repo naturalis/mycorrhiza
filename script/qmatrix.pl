@@ -8,10 +8,10 @@ use Bio::Phylo::Util::Logger ':levels';
 
 # process command line arguments
 my $verbosity = WARN;
-my @assoc;
+my @assoc = qw(A B G M);
 my $logfile;
 my $statesfile;
-my $burnin;
+my $burnin = 0.2;
 GetOptions(
 	'verbose+'     => \$verbosity,
 	'assoc=s'      => sub { my $string = pop; @assoc = split /,/, $string },
@@ -105,7 +105,9 @@ for my $i ( 0 .. $#states ) {
 			print '-';
 		}
 		else {
-			my @q = @{ $matrix[$i]->[$j] };
+			my @total = @{ $matrix[$i]->[$j] };
+			my $start = int( scalar(@total) * $burnin );
+			my @q = @total[ $start .. $#total ];
 			my $q;
 			eval { $q = sum(@q)/@q };
 			if ( $@ ) {
@@ -121,4 +123,3 @@ for my $i ( 0 .. $#states ) {
 		print $j == $#states ? "\n" : "\t";
 	}
 }
-
