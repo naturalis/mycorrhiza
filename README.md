@@ -172,8 +172,5 @@ out of the earlier work done for
 [naturalis/asterid-phylo-comp](http://github.com/naturalis/asterid-phylo-comp).
 
 ## References
-![Ribbons diagram][ribbons]
-
-
-[ribbons] https://github.com/naturalis/mycorrhiza/raw/master/results/d3.pdf
+![Ribbons diagram](https://github.com/naturalis/mycorrhiza/raw/master/results/d3.pdf)
 
