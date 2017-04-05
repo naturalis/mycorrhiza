@@ -9,33 +9,9 @@ and Rutger Vos. Directory structure:
 - [doc](doc): supporting documentation, manuscript files
 - [results](results): final output files
 
+## Methods
 
-  
-Since phylogenetic inference under different rooting scenarios has already been performed
-by Frida at the outset of the analyses recorded here, the most computationally intensive 
-steps that need to be taken involve ancestral state reconstruction. In a previous 
-iteration, Frida had done this using a dispersal model where state changes were modeled as 
-migrations. Here we will instead do the analysis in a more standard way, using 
-[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so that each state change 
-is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
-so that various hypotheses can be tested using Bayes Factors.
-
-## Preamble: restricting the number of transitions, the general idea
-
-Because different higher taxa among the mycorrhiza can associate with land plants in 
-different combinations there is potentially a very large number of states: if we treat 
-every permutation of associations as a potential state within the context of a 
-phylogenetic comparative analysis we will end up with an explosion of parameters in the Q 
-matrix such that the analysis becomes practically intractable. But, we can reduce the 
-number of parameters in the following ways:
-
-- We only take the empirically observed combinations of observations, not all 
-  permutations.
-- We disallow transitions where more than one association is gained or lost 
-  instantaneously.
-- We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
-
-## Preamble: the different rootings to consider
+### Phylogenetic analysis
 
 Plant systematists assign four different rootings of the land plants enough plausibility
 that we consider them here. These four rootings are intended to orient the following 
@@ -56,6 +32,30 @@ vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 - `ATxMB` - liverworts and mosses (M,B) form a monophyletic group, and so do
   hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
+
+Since phylogenetic inference under different rooting scenarios has already been performed
+by Frida at the outset of the analyses recorded here, the most computationally intensive 
+steps that need to be taken involve ancestral state reconstruction. In a previous 
+iteration, Frida had done this using a dispersal model where state changes were modeled as 
+migrations. Here we will instead do the analysis in a more standard way, using 
+[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so that each state change 
+is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
+so that various hypotheses can be tested using Bayes Factors.
+
+## Ancestral state reconstruction
+
+Because different higher taxa among the mycorrhiza can associate with land plants in 
+different combinations there is potentially a very large number of states: if we treat 
+every permutation of associations as a potential state within the context of a 
+phylogenetic comparative analysis we will end up with an explosion of parameters in the Q 
+matrix such that the analysis becomes practically intractable. But, we can reduce the 
+number of parameters in the following ways:
+
+- We only take the empirically observed combinations of observations, not all 
+  permutations.
+- We disallow transitions where more than one association is gained or lost 
+  instantaneously.
+- We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
 
 ## Preparing the input data
 
