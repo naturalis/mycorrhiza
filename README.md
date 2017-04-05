@@ -14,15 +14,15 @@ and Rutger Vos. Directory structure:
 The general aims of this project, and the usage that the files in this repository are put
 to, are:
 
-- For the four possible rootings (identified as `ABasal`, `ATxMB`, `MBasal`, and `TBasal`)
-  to reconstruct the root states. These will be visualized as likelihood pies for the four
-  root nodes.
+- For the four possible rootings (identified as [ABasal](data/2017-03-16/ABasal.pdf), 
+  [ATxMB](data/2017-03-16/ATxMB.pdf), [MBasal](data/2017-03-16/MBasal.pdf), and 
+  [TBasal](data/2017-03-16/TBasal.pdf)) to reconstruct the root states. These will be 
+  visualized as likelihood pies for the four root nodes.
 - For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
   nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
-- For the state transitions on the preferred rooting to be visualized somehow, for example
-  as [communicating compartments](results/IMG_1732.jpg) or as a 
-  [circos-style graph](results/d3.pdf) (for the latter, we had to use D3, not circos,
-  because in- and outflows need different sizes).
+- For the state transitions on the preferred rooting to be visualized as a 
+  [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
+  and outflows need different sizes).
 - For there to be an enumeration of the most likely scenarios by which the initial 
   association between mycorrhiza and land plants came about, with their relative support
   by the data quantified.
