@@ -55,8 +55,11 @@ number of parameters in the following ways:
 
 Plant systematists assign four different rootings of the land plants enough plausibility
 that we consider them here. These four rootings are intended to orient the following 
-major groups relative to one another: liverworts (_Marchantiophyta_), mosses 
-(_Bryophyta_), hornworts (_Anthocerotophyta_) and vascular plants (_Tracheophyta_).
+major groups relative to one another: 
+liverworts ([_Marchantiophyta_](http://eol.org/pages/6864901/overview)), 
+mosses ([_Bryophyta_](http://eol.org/pages/3768/overview)), 
+hornworts ([_Anthocerotophyta_](http://eol.org/pages/3678/overview)) and 
+vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 
 - `MBasal` - liverworts split off first, followed by mosses, and hornworts are sister to 
   vascular plants. This yields the following topology: 
