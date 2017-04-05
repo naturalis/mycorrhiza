@@ -6,52 +6,12 @@ and Rutger Vos. Directory structure:
 
 - [data](data): contains verbatim input data and pruned/converted versions thereof
 - [script](script): contains conversion scripts
-- [doc](doc): supporting documentation
+- [doc](doc): supporting documentation, manuscript files
 - [results](results): final output files
 
-# Goals
+## Methods
 
-The general aims of this project, and the usage that the files in this repository are put
-to, are:
-
-- For the four possible rootings (identified as [ABasal](data/2017-03-16/ABasal.pdf), 
-  [ATxMB](data/2017-03-16/ATxMB.pdf), [MBasal](data/2017-03-16/MBasal.pdf), and 
-  [TBasal](data/2017-03-16/TBasal.pdf)) to reconstruct the root states. These will be 
-  visualized as likelihood pies for the four root nodes.
-- For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
-  nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
-- For the state transitions on the preferred rooting to be visualized as a 
-  [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
-  and outflows need different sizes).
-- For there to be an enumeration of the most likely scenarios by which the initial 
-  association between mycorrhiza and land plants came about, with their relative support
-  by the data quantified.
-  
-Since phylogenetic inference under different rooting scenarios has already been performed
-by Frida at the outset of the analyses recorded here, the most computationally intensive 
-steps that need to be taken involve ancestral state reconstruction. In a previous 
-iteration, Frida had done this using a dispersal model where state changes were modeled as 
-migrations. Here we will instead do the analysis in a more standard way, using 
-[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so that each state change 
-is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
-so that various hypotheses can be tested using Bayes Factors.
-
-## Preamble: restricting the number of transitions, the general idea
-
-Because different higher taxa among the mycorrhiza can associate with land plants in 
-different combinations there is potentially a very large number of states: if we treat 
-every permutation of associations as a potential state within the context of a 
-phylogenetic comparative analysis we will end up with an explosion of parameters in the Q 
-matrix such that the analysis becomes practically intractable. But, we can reduce the 
-number of parameters in the following ways:
-
-- We only take the empirically observed combinations of observations, not all 
-  permutations.
-- We disallow transitions where more than one association is gained or lost 
-  instantaneously.
-- We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
-
-## Preamble: the different rootings to consider
+### Phylogenetic analysis
 
 Plant systematists assign four different rootings of the land plants enough plausibility
 that we consider them here. These four rootings are intended to orient the following 
@@ -72,6 +32,30 @@ vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 - `ATxMB` - liverworts and mosses (M,B) form a monophyletic group, and so do
   hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
+
+Since phylogenetic inference under different rooting scenarios has already been performed
+by Frida at the outset of the analyses recorded here, the most computationally intensive 
+steps that need to be taken involve ancestral state reconstruction. In a previous 
+iteration, Frida had done this using a dispersal model where state changes were modeled as 
+migrations. Here we will instead do the analysis in a more standard way, using 
+[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so that each state change 
+is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
+so that various hypotheses can be tested using Bayes Factors.
+
+## Ancestral state reconstruction
+
+Because different higher taxa among the mycorrhiza can associate with land plants in 
+different combinations there is potentially a very large number of states: if we treat 
+every permutation of associations as a potential state within the context of a 
+phylogenetic comparative analysis we will end up with an explosion of parameters in the Q 
+matrix such that the analysis becomes practically intractable. But, we can reduce the 
+number of parameters in the following ways:
+
+- We only take the empirically observed combinations of observations, not all 
+  permutations.
+- We disallow transitions where more than one association is gained or lost 
+  instantaneously.
+- We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
 
 ## Preparing the input data
 
@@ -163,10 +147,32 @@ To run an analysis like this, we have to do the following steps:
    which are somewhat possible because of the relatively large Q matrix.
 2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
 
-## Post-analysis processing
+The data directory [data/2016-12-01](data/2016-12-01) contains various hypothesis tests 
+applied to the `MBasal` rooting. The documentation there should also explain the rate 
+constraint test applied to the either rootings, in directory [data/2017-03-06](data/2017-03-06).
+Together these analyses form the basis of the results.
 
-Once the analysis is completed we will have a large file with samples of rates from the Q
-matrix and samples of states at the various internal nodes. Presumably these will have to 
-be visualized using likelihood pies and colored branches. Perhaps we will have some use 
-out of the earlier work done for 
-[naturalis/asterid-phylo-comp](http://github.com/naturalis/asterid-phylo-comp).
+# Results
+
+The general outcomes of this project, and the usage that the files in this repository are put
+to, are:
+
+- For the four possible rootings (given here as simple PDFs: 
+  [ABasal](data/2017-03-16/ABasal.pdf), 
+  [ATxMB](data/2017-03-16/ATxMB.pdf), 
+  [MBasal](data/2017-03-16/MBasal.pdf), and 
+  [TBasal](data/2017-03-16/TBasal.pdf)) 
+  a reconstruction of the root states. These have been visualized as likelihood pies for the 
+  four root nodes (respectively:
+  [ABasal](results/ABasal_pie_simple.pdf),
+  [ATxMB](results/ATxMB_pie_simple.pdf), 
+  [MBasal](results/MBasal_pie_simple.pdf), and
+  [TBasal](results/TBasal_pie_simple.pdf))
+- The preferred rooting (`MBasal`) a reconstruction of the likelihood pies for all the 
+  nodes and visualized on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
+- For the state transitions on the preferred rooting to be visualized as a 
+  [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
+  and outflows need different sizes).
+- For there to be an enumeration of the most likely scenarios by which the initial 
+  association between mycorrhiza and land plants came about, with their relative support
+  by the data quantified.
