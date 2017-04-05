@@ -103,6 +103,11 @@ would be:
 
     make_ms_input.pl -d <indata> -i <intree> -o <outtree> -t <outdata> > <states>
 
+- `-d` location of input data file
+- `-i` location of input tree file in Nexus format
+- `-o` output Nexus tree file, reconciled with data
+- `-t` output data in TSV format, reconciled with tree
+
 ### 2. Make restriction commands
 
 Then we create the BayesTraits/MultiState commands for restricting the transitions as
