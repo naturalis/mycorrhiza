@@ -147,9 +147,14 @@ To run an analysis like this, we have to do the following steps:
    which are somewhat possible because of the relatively large Q matrix.
 2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
 
+The data directory [data/2016-12-01](data/2016-12-01) contains various hypothesis tests 
+applied to the `MBasal` rooting. The documentation there should also explain the rate 
+constraint test applied to the either rootings, in directory [data/2017-03-06](data/2017-03-06).
+Together these analyses form the basis of the results.
+
 # Results
 
-The general aims of this project, and the usage that the files in this repository are put
+The general outcomes of this project, and the usage that the files in this repository are put
 to, are:
 
 - For the four possible rootings (given here as simple PDFs: 
@@ -157,14 +162,14 @@ to, are:
   [ATxMB](data/2017-03-16/ATxMB.pdf), 
   [MBasal](data/2017-03-16/MBasal.pdf), and 
   [TBasal](data/2017-03-16/TBasal.pdf)) 
-  to reconstruct the root states. These have been visualized as likelihood pies for the 
+  a reconstruction of the root states. These have been visualized as likelihood pies for the 
   four root nodes (respectively:
   [ABasal](results/ABasal_pie_simple.pdf),
   [ATxMB](results/ATxMB_pie_simple.pdf), 
   [MBasal](results/MBasal_pie_simple.pdf), and
   [TBasal](results/TBasal_pie_simple.pdf))
-- For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
-  nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
+- The preferred rooting (`MBasal`) a reconstruction of the likelihood pies for all the 
+  nodes and visualized on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
 - For the state transitions on the preferred rooting to be visualized as a 
   [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
   and outflows need different sizes).
