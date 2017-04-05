@@ -45,11 +45,11 @@ so that various hypotheses can be tested using Bayes Factors.
 ## Ancestral state reconstruction
 
 Because different higher taxa among the mycorrhiza can associate with land plants in 
-different combinations there is potentially a very large number of states: if we treat 
-every permutation of associations as a potential state within the context of a 
-phylogenetic comparative analysis we will end up with an explosion of parameters in the Q 
-matrix such that the analysis becomes practically intractable. But, we can reduce the 
-number of parameters in the following ways:
+[different combinations](results/legend.pdf) there is potentially a very large number of 
+states: if we treat every permutation of associations as a potential state within the 
+context of a phylogenetic comparative analysis we will end up with an explosion of 
+parameters in the Q matrix such that the analysis becomes practically intractable. But, 
+we can reduce the number of parameters in the following ways:
 
 - We only take the empirically observed combinations of observations, not all 
   permutations.
