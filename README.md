@@ -4,10 +4,10 @@ This repository holds data and scripts to analyze associations between land plan
 mycorrhiza. This is a collaboration between Vincent Merckx, Frida Feijen, Jorinde Nuytinck
 and Rutger Vos. Directory structure:
 
-- data: contains verbatim input data and pruned/converted versions thereof
-- script: contains conversion scripts
-- doc: supporting documentation
-- results: final output files
+- [data](data): contains verbatim input data and pruned/converted versions thereof
+- [script](script): contains conversion scripts
+- [doc](doc): supporting documentation
+- [results](results): final output files
 
 # Goals
 
@@ -21,7 +21,7 @@ to, are:
   nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
 - For the state transitions on the preferred rooting to be visualized somehow, for example
   as [communicating compartments](results/IMG_1732.jpg) or as a 
-  [circos-style graph](doc/circos.jpg) (for the latter, we'd have to use D3, not circos,
+  [circos-style graph](results/d3.pdf) (for the latter, we had to use D3, not circos,
   because in- and outflows need different sizes).
 - For there to be an enumeration of the most likely scenarios by which the initial 
   association between mycorrhiza and land plants came about, with their relative support
