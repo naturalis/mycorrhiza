@@ -9,15 +9,22 @@ and Rutger Vos. Directory structure:
 - [doc](doc): supporting documentation
 - [results](results): final output files
 
-# Goals
+# Results
 
 The general aims of this project, and the usage that the files in this repository are put
 to, are:
 
-- For the four possible rootings (identified as [ABasal](data/2017-03-16/ABasal.pdf), 
-  [ATxMB](data/2017-03-16/ATxMB.pdf), [MBasal](data/2017-03-16/MBasal.pdf), and 
-  [TBasal](data/2017-03-16/TBasal.pdf)) to reconstruct the root states. These will be 
-  visualized as likelihood pies for the four root nodes.
+- For the four possible rootings (given here as simple PDFs: 
+  [ABasal](data/2017-03-16/ABasal.pdf), 
+  [ATxMB](data/2017-03-16/ATxMB.pdf), 
+  [MBasal](data/2017-03-16/MBasal.pdf), and 
+  [TBasal](data/2017-03-16/TBasal.pdf)) 
+  to reconstruct the root states. These have been visualized as likelihood pies for the 
+  four root nodes (respectively:
+  [ABasal](results/ABasal_pie_simple.pdf),
+  [ATxMB](results/ATxMB_pie_simple.pdf), 
+  [MBasal](results/MBasal_pie_simple.pdf), and
+  [TBasal](results/TBasal_pie_simple.pdf))
 - For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
   nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
 - For the state transitions on the preferred rooting to be visualized as a 
