@@ -96,7 +96,8 @@ HostFungusAssociations.txt or TableS1.txt. The key here is that each data line h
 taxon name, some whitespace, and then a sequence of associations, with or without 
 spaces in it. For each line, the first word is matched against the tips in the tree, 
 any lines that don't match anything are assumed to be headers or footers and are 
-ignored. When this happens, a warning is emitted by `make_ms_input.pl`, as follows:
+ignored. When this happens, a warning is emitted by 
+[make_ms_input.pl](script/make_ms_input.pl), as follows:
 `putative taxon '$taxon' not in tree, ignoring (could also be table header)`
 Note that you also need to capture STDOUT to make a states file, so the full command
 would be:
@@ -114,14 +115,15 @@ would be:
 Then we create the BayesTraits/MultiState commands for restricting the transitions as
 per the general idea described above. These commands will also ensure that the run is
 done using reversible jump MCMC. Whether or not you use a hyperprior depends on whether
-the script `make_restrictions.pl` was invoked with the `--hyper` flag. It is probably a 
-good idea to do this. In addition, by default, the command file will configure a chain 
-with 'infinite' iterations (i.e. -1) that needs to be interrupted manually. If you have 
-a better idea about the number of iterations it is worth specifying that. A conservative
-estimate for the present project is 10*10^6 generations, of which we will want to discard
-up to 50% burnin (in one case this appeared to be necessary). Lastly, it might make sense
-to indicate how many cores you have available for the analysis, although this only works 
-for multi-core (e.g. OpenMP) versions. Hence, the full command would be:
+the script [make_restrictions.pl](script/make_restrictions.pl) was invoked with the 
+`--hyper` flag. It is probably a good idea to do this. In addition, by default, the 
+command file will configure a chain with 'infinite' iterations (i.e. -1) that needs to 
+be interrupted manually. If you have a better idea about the number of iterations it is 
+worth specifying that. A conservative estimate for the present project is 10*10^6 
+generations, of which we will want to discard up to 50% burnin (in one case this 
+appeared to be necessary). Lastly, it might make sense to indicate how many cores you 
+have available for the analysis, although this only works for multi-core (e.g. OpenMP) 
+versions. Hence, the full command would be:
 
     make_restrictions.pl -states <states.tsv> -tree <outtree> [-iterations <iterations>] 
     [-cores <cores>] [-hyper <min,max>] [-fossil <tip1,tip2=value>] [-restrict <qAB=qBA>]
