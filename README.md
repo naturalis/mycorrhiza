@@ -6,33 +6,10 @@ and Rutger Vos. Directory structure:
 
 - [data](data): contains verbatim input data and pruned/converted versions thereof
 - [script](script): contains conversion scripts
-- [doc](doc): supporting documentation
+- [doc](doc): supporting documentation, manuscript files
 - [results](results): final output files
 
-# Results
 
-The general aims of this project, and the usage that the files in this repository are put
-to, are:
-
-- For the four possible rootings (given here as simple PDFs: 
-  [ABasal](data/2017-03-16/ABasal.pdf), 
-  [ATxMB](data/2017-03-16/ATxMB.pdf), 
-  [MBasal](data/2017-03-16/MBasal.pdf), and 
-  [TBasal](data/2017-03-16/TBasal.pdf)) 
-  to reconstruct the root states. These have been visualized as likelihood pies for the 
-  four root nodes (respectively:
-  [ABasal](results/ABasal_pie_simple.pdf),
-  [ATxMB](results/ATxMB_pie_simple.pdf), 
-  [MBasal](results/MBasal_pie_simple.pdf), and
-  [TBasal](results/TBasal_pie_simple.pdf))
-- For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
-  nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
-- For the state transitions on the preferred rooting to be visualized as a 
-  [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
-  and outflows need different sizes).
-- For there to be an enumeration of the most likely scenarios by which the initial 
-  association between mycorrhiza and land plants came about, with their relative support
-  by the data quantified.
   
 Since phylogenetic inference under different rooting scenarios has already been performed
 by Frida at the outset of the analyses recorded here, the most computationally intensive 
@@ -170,10 +147,27 @@ To run an analysis like this, we have to do the following steps:
    which are somewhat possible because of the relatively large Q matrix.
 2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
 
-## Post-analysis processing
+# Results
 
-Once the analysis is completed we will have a large file with samples of rates from the Q
-matrix and samples of states at the various internal nodes. Presumably these will have to 
-be visualized using likelihood pies and colored branches. Perhaps we will have some use 
-out of the earlier work done for 
-[naturalis/asterid-phylo-comp](http://github.com/naturalis/asterid-phylo-comp).
+The general aims of this project, and the usage that the files in this repository are put
+to, are:
+
+- For the four possible rootings (given here as simple PDFs: 
+  [ABasal](data/2017-03-16/ABasal.pdf), 
+  [ATxMB](data/2017-03-16/ATxMB.pdf), 
+  [MBasal](data/2017-03-16/MBasal.pdf), and 
+  [TBasal](data/2017-03-16/TBasal.pdf)) 
+  to reconstruct the root states. These have been visualized as likelihood pies for the 
+  four root nodes (respectively:
+  [ABasal](results/ABasal_pie_simple.pdf),
+  [ATxMB](results/ATxMB_pie_simple.pdf), 
+  [MBasal](results/MBasal_pie_simple.pdf), and
+  [TBasal](results/TBasal_pie_simple.pdf))
+- For the preferred rooting (`MBasal`) to reconstruct the likelihood pies for all the 
+  nodes and visualize these on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
+- For the state transitions on the preferred rooting to be visualized as a 
+  [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
+  and outflows need different sizes).
+- For there to be an enumeration of the most likely scenarios by which the initial 
+  association between mycorrhiza and land plants came about, with their relative support
+  by the data quantified.
