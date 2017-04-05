@@ -167,7 +167,8 @@ to, are:
   [ABasal](results/ABasal_pie_simple.pdf),
   [ATxMB](results/ATxMB_pie_simple.pdf), 
   [MBasal](results/MBasal_pie_simple.pdf), and
-  [TBasal](results/TBasal_pie_simple.pdf))
+  [TBasal](results/TBasal_pie_simple.pdf),
+  with [legend](results/legend.pdf))
 - The preferred rooting (`MBasal`) a reconstruction of the likelihood pies for all the 
   nodes and visualized on a [radial tree](data/2016-11-17/Mbasal_mod1.bt.rescaled.nex.svg).
 - For the state transitions on the preferred rooting to be visualized as a 
