@@ -107,6 +107,7 @@ would be:
 - `-i` location of input tree file in Nexus format
 - `-o` output Nexus tree file, reconciled with data
 - `-t` output data in TSV format, reconciled with tree
+- `> <states>` location to redirect states table to file
 
 ### 2. Make restriction commands
 
@@ -125,6 +126,15 @@ for multi-core (e.g. OpenMP) versions. Hence, the full command would be:
     make_restrictions.pl -states <states.tsv> -tree <outtree> [-iterations <iterations>] 
     [-cores <cores>] [-hyper <min,max>] [-fossil <tip1,tip2=value>] [-restrict <qAB=qBA>]
     [-stones <min,max>]
+
+- `-states` the redirected states table from the previous step
+- `-tree` the Nexus tree file produced by the previous step
+- `-iterations` optional, number of iterations, otherwise Inf
+- `-cores` optional, number of CPU cores to use
+- `-hyper` optional, range for the hyperprior, comma separated
+- `-fossil` optional, fix a node (identified by tips) to a value
+- `-restrict` optional, fix a rate
+- `-stones` optional, configures the stepping stone sampler for marginal lnL
    
 Once this is done we should have a tree file in Nexus format, a data file in tab-separated
 spreadsheet format, and a text file with the restriction commands. You can now run the
