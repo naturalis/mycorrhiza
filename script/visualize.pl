@@ -14,7 +14,7 @@ use Bio::Phylo::Util::CONSTANT ':objecttypes';
 my $verbosity = WARN;
 my $mode = 'clado';
 my %config = ( 'radius' => 12 );
-my ( @assoc, $logfile, $treefile, $statesfile, $datafile, $width, $height, $burnin );
+my ( @assoc,$logfile,$treefile,$statesfile,$datafile,$taxafile,$width,$height,$burnin );
 GetOptions(
 	'verbose+' => \$verbosity,
 	'assoc=s'  => sub { my $string = pop; @assoc = split /,/, $string }, # fungal taxa
@@ -27,6 +27,7 @@ GetOptions(
 	'burnin=i' => \$burnin,
 	'mode=s'   => \$mode,
 	'config=s' => \%config,
+	'taxa=s'   => \$taxafile,
 );
 
 # these are populated when make_colors() is invoked
@@ -56,7 +57,8 @@ my $draw = Bio::Phylo::Treedrawer->new(
 	'-shape'  => 'radial',
 	'-mode'   => $mode,
 	'-tree'   => $tree,
-	'-branch_width' => 6,
+	'-padding'      => 400,
+	'-branch_width' => $config{'width'},
 	'-node_radius'  => $config{'radius'},
 	'-pie_colors'   => make_colors(),
 );
@@ -146,6 +148,32 @@ if ( $config{'pies'} eq 'no' ) {
 		$tip->set_font_size(10);
 		$tip->set_radius(0);		
 	}
+}
+
+# apply higher taxa, if provided
+if ( $taxafile and -e $taxafile ) {
+	my %taxa;
+	open my $fh, '<', $taxafile or die $!;
+	while(<$fh>) {
+		chomp;
+		my ( $species, $taxon ) = split /\t/, $_;
+		$taxa{$taxon} = [] if not $taxa{$taxon};
+		if ( my $tip = $tree->get_by_name($species) ) {
+			push @{ $taxa{$taxon} }, $tip;
+		}
+		else {
+			$log->warn("Couldn't find $species in $tree");
+		}
+	}
+	for my $taxon ( keys %taxa ) {
+		my $mrca = $tree->get_mrca( $taxa{$taxon} );
+		$mrca->set_clade_label( $taxon );
+		$mrca->set_clade_label_font({
+			'-face' => 'Verdana',
+			'-size' => 40,
+		});
+	}
+	$draw->set_text_width( 10 );
 }
 
 # remove the tip labels, if requested
