@@ -182,3 +182,6 @@ put to, are:
 - For there to be an [enumeration](results/RateConstraints.xlsx) of the most likely 
   scenarios by which the initial association between mycorrhiza and land plants came 
   about, with their relative support by the data quantified.
+- For there to be a [states through time plot](results/StatesThroughTime-bin50.pdf) that
+  shows which likelihood pie slices dominated sliding windows from the root of the tree
+  to the present.
