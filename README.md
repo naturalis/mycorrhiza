@@ -74,8 +74,8 @@ outlined below. Note that this assumes the following about the data:
 
 ### 1. Make input data
 
-First we make the raw input for BayesTraits/MultiState using the script `make_ms_input.pl`.
-Make sure that the data with associations is in the same format as 
+First we make the raw input for BayesTraits/MultiState using the script 
+`make_ms_input.pl`. Make sure that the data with associations is in the same format as 
 HostFungusAssociations.txt or TableS1.txt. The key here is that each data line has the 
 taxon name, some whitespace, and then a sequence of associations, with or without 
 spaces in it. For each line, the first word is matched against the tips in the tree, 
@@ -145,12 +145,14 @@ To run an analysis like this, we have to do the following steps:
 
 1. install a Quad version of BayesTraits. This has higher precision to prevent underflows,
    which are somewhat possible because of the relatively large Q matrix.
-2. open the program, i.e. `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
+2. open the program, i.e.:
+
+    `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
 
 The data directory [data/2016-12-01](data/2016-12-01) contains various hypothesis tests 
 applied to the `MBasal` rooting. The documentation there should also explain the rate 
-constraint test applied to the either rootings, in directory [data/2017-03-06](data/2017-03-06).
-Together these analyses form the basis of the results.
+constraint test applied to the either rootings, in directory 
+[data/2017-03-06](data/2017-03-06). Together these analyses form the basis of the results.
 
 # Results
 
@@ -162,8 +164,8 @@ put to, are:
   [ATxMB](data/2017-03-16/ATxMB.pdf), 
   [MBasal](data/2017-03-16/MBasal.pdf), and 
   [TBasal](data/2017-03-16/TBasal.pdf)) 
-  a reconstruction of the root states. These have been visualized as likelihood pies for the 
-  four root nodes (respectively:
+  a reconstruction of the root states. These have been visualized as likelihood pies for 
+  the four root nodes (respectively:
   [ABasal](results/ABasal_pie_simple.pdf),
   [ATxMB](results/ATxMB_pie_simple.pdf), 
   [MBasal](results/MBasal_pie_simple.pdf), and
