@@ -40,10 +40,12 @@ drawPie <- function(root) {
     radius = 0.8, # pie is centered in a square box ranging from -1 to 1. If slice labels are long use a smaller radius.
     col = colors,        
   )
+  return(merged)
 }
 
 # now draw the pies for each rooting
-drawPie("ABasal")
-drawPie("ATxMB")
-drawPie("MBasal")
-drawPie("TBasal")
+merged.abasal<-drawPie("ABasal")
+merged.atxmb<-drawPie("ATxMB")
+merged.mbasal<-drawPie("MBasal")
+merged.tbasal<-drawPie("TBasal")
+
