@@ -25,4 +25,5 @@ the following files are here:
   `perl ../../script/simplify-stt.pl -s stt.tsv > stt-simplified.tsv`, yielding
   [stt-simplified.tsv](stt-simplified.tsv). This was then incorporated into a 
   [spreadsheet](StatesThroughTime-bin50.xlsx) to produce a 
-  [visualization](StatesThroughTime-bin50.pdf).
+  [visualization](StatesThroughTime-bin50.pdf) of the ancestral state reconstructions 
+  averaged over all the nodes inside bins of 50myr.
