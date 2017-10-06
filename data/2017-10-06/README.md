@@ -10,4 +10,7 @@ the following files are here:
   [run3](../2017-03-06/ATxMB/run3/HostFungusAssociations.txt.unconstrained.log.gz), 
   which have been averaged here using [the log merging script](../../script/logmerge.pl)
   to produce the [merged log](merged.log).
-- a new driver [script](draw.sh) for tree visualization
+- a new driver [script](draw.sh) for tree visualization, and the resulting
+  [cladogram](Tree.nex.bt.nex.supp.svg) and [phylogram](Tree.nex.bt.nex.ms.svg)
+- a new [Q matrix](qmatrix.tsv), generated with the [qmatrix.pl](../../script/qmatrix.pl)
+  script using: `perl ../../script/qmatrix.pl -l merged.log -s states.tsv > qmatrix.tsv`
