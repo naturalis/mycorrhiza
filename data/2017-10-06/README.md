@@ -11,8 +11,10 @@ the following files are here:
   which have been averaged here using [the log merging script](../../script/logmerge.pl)
   to produce the [merged log](merged.log).
 - a new driver [script](draw.sh) for tree visualization, and the resulting
-  [cladogram](Tree.nex.bt.nex.supp.svg) ([pdf](Tree.nex.bt.nex.supp.pdf) version) and 
-  [phylogram](Tree.nex.bt.nex.ms.svg) ([pdf](Tree.nex.bt.nex.ms.pdf) version).
+  [cladogram](Tree.nex.bt.nex.supp.svg) (with ancestral state pies and higher taxon labels, 
+  also see [pdf](Tree.nex.bt.nex.supp.pdf) version) and 
+  [phylogram](Tree.nex.bt.nex.ms.svg) (branch lengths, all species names, no pies, 
+  also see [pdf](Tree.nex.bt.nex.ms.pdf) version).
 - a new [Q matrix](qmatrix.tsv), generated with the [qmatrix.pl](../../script/qmatrix.pl)
   script using: `perl ../../script/qmatrix.pl -l merged.log -s states.tsv > qmatrix.tsv`,
   the Q matrix imported in [a D3/HTML document](d3.html) and a [PDF version](d3.pdf) of
