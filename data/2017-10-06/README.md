@@ -8,6 +8,6 @@ the following files are here:
   from [run1](../2017-03-06/ATxMB/run1/HostFungusAssociations.txt.unconstrained.log.gz), 
   [run2](../2017-03-06/ATxMB/run2/HostFungusAssociations.txt.unconstrained.log.gz), and 
   [run3](../2017-03-06/ATxMB/run3/HostFungusAssociations.txt.unconstrained.log.gz), 
-  which have been averaged here using [the log merging script](../script/../logmerge.pl)
+  which have been averaged here using [the log merging script](../../script/logmerge.pl)
   to produce the [merged log](merged.log).
 - a new driver [script](draw.sh) for tree visualization
