@@ -156,14 +156,13 @@ constraint test applied to the either rootings, in directory
 
 # Results
 
-The general outcomes of this project, and the usage that the files in this repository are 
-put to, are:
+The general outcomes of this project are:
 
-- For the four possible rootings (given here as simple PDFs: 
+- The four rootings (given here as simple PDFs: 
   [ABasal](data/2017-03-16/ABasal.pdf), 
   [ATxMB](data/2017-03-16/ATxMB.pdf), 
   [MBasal](data/2017-03-16/MBasal.pdf), and 
-  [TBasal](data/2017-03-16/TBasal.pdf)) 
+  [TBasal](data/2017-03-16/TBasal.pdf)) for which we generated
   a reconstruction of the root states. These have been visualized as likelihood pies for 
   the four root nodes (respectively:
   [ABasal](results/ABasal_pie_simple.pdf),
@@ -171,17 +170,17 @@ put to, are:
   [MBasal](results/MBasal_pie_simple.pdf), and
   [TBasal](results/TBasal_pie_simple.pdf),
   with [legend](results/legend.pdf))
-- For the preferred rooting (`MBasal`) a reconstruction of the likelihood pies for all the 
-  nodes and visualized on a [radial tree](results/Mbasal_mod1.bt.rescaled.nex.supp.pdf) to
+- For the preferred rooting (`ATxMB`) a reconstruction of the likelihood pies for all the 
+  nodes visualized on a [radial tree](data/2017-10-06/Tree.nex.bt.nex.supp.pdf) to
   be used as supplementary figure with the manuscript, as well as a 
-  [simplified radial tree](results/Mbasal_mod1.bt.rescaled.nex.ms.pdf) that can be 
+  [simplified radial tree](data/2017-10-06/Tree.nex.bt.nex.ms.pdf) that can be 
   inserted in the main manuscript body.
 - For the state transitions on the preferred rooting to be visualized as a 
-  [circos-style graph](results/d3.pdf) (for this we had to use D3, not circos, because in- 
+  [circos-style graph](data/2017-10-06/d3.pdf) (for this we used D3, not circos, because in- 
   and outflows need different sizes).
-- For there to be an [enumeration](results/RateConstraints.xlsx) of the most likely 
+- an [enumeration](results/RateConstraints.xlsx) of the most likely 
   scenarios by which the initial association between mycorrhiza and land plants came 
   about, with their relative support by the data quantified.
-- For there to be a [states through time plot](results/StatesThroughTime-bin50.pdf) that
+- a [states through time plot](data/2017-10-06/StatesThroughTime-bin50.pdf) that
   shows which likelihood pie slices dominated sliding windows from the root of the tree
   to the present.
