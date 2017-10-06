@@ -156,6 +156,9 @@ constraint test applied to the either rootings, in directory
 
 # Results
 
+**Note that as of 2017-10-06 the most recent result files were produced inside 
+[data/2017-10-06](data/2017-10-06), not the results folder**
+
 The general outcomes of this project are:
 
 - The four rootings (given here as simple PDFs: 
