@@ -141,12 +141,16 @@ if ( $config{'pies'} eq 'no' ) {
 	while(<$fh>) {
 		chomp;
 		my ( $taxon, $code ) = split /\t/, $_;
-		my $tip = $tree->get_by_name($taxon);
-		$tip->set_branch_color( $color{ $decode{ $code } } );
-		$tip->set_font_style('Italic');
-		$tip->set_font_face('Verdana');
-		$tip->set_font_size(10);
-		$tip->set_radius(0);		
+		if ( my $tip = $tree->get_by_name($taxon) ) {
+			$tip->set_branch_color( $color{ $decode{ $code } } );
+			$tip->set_font_style('Italic');
+			$tip->set_font_face('Verdana');
+			$tip->set_font_size(10);
+			$tip->set_radius(0);
+		}
+		else {
+			$log->error("Couldn't find '$taxon' in tree");
+		}
 	}
 }
 
@@ -166,12 +170,16 @@ if ( $taxafile and -e $taxafile ) {
 		}
 	}
 	for my $taxon ( keys %taxa ) {
-		my $mrca = $tree->get_mrca( $taxa{$taxon} );
-		$mrca->set_clade_label( $taxon );
-		$mrca->set_clade_label_font({
-			'-face' => 'Verdana',
-			'-size' => 40,
-		});
+		if ( my $mrca = $tree->get_mrca( $taxa{$taxon} ) ) {
+			$mrca->set_clade_label( $taxon );
+			$mrca->set_clade_label_font({
+				'-face' => 'Verdana',
+				'-size' => 40,
+			});
+		}
+		else {
+			$log->error("No MRCA for ".Dumper($taxa{$taxon}));
+		}
 	}
 	$draw->set_text_width( 10 );
 }
