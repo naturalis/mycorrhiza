@@ -13,4 +13,6 @@ the following files are here:
 - a new driver [script](draw.sh) for tree visualization, and the resulting
   [cladogram](Tree.nex.bt.nex.supp.svg) and [phylogram](Tree.nex.bt.nex.ms.svg)
 - a new [Q matrix](qmatrix.tsv), generated with the [qmatrix.pl](../../script/qmatrix.pl)
-  script using: `perl ../../script/qmatrix.pl -l merged.log -s states.tsv > qmatrix.tsv`
+  script using: `perl ../../script/qmatrix.pl -l merged.log -s states.tsv > qmatrix.tsv`,
+  the Q matrix imported in [a D3/HTML document](d3.html) and a [PDF version](d3.pdf) of
+  the D3 visualization.
