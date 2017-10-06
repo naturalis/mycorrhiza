@@ -23,8 +23,7 @@ vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 
 - `MBasal` - liverworts split off first, followed by mosses, and hornworts are sister to 
   vascular plants. This yields the following topology: 
-  `(((Anthocerotophyta,Tracheophyta),Bryophyta),Marchantiophyta);`
-  **This is the preferred rooting, which we will explore in more depth than the others.**
+  `(((Anthocerotophyta,Tracheophyta),Bryophyta),Marchantiophyta);`  
 - `ABasal` - hornworts branch off first, yielding the following topology: 
   `(((Marchantiophyta,Bryophyta),Tracheophyta),Anthocerotophyta);`
 - `TBasal` - vascular plants branch off first, yielding the following topology: 
@@ -32,6 +31,8 @@ vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 - `ATxMB` - liverworts and mosses (M,B) form a monophyletic group, and so do
   hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
+  **As of 2017-10-06, this is the preferred rooting, which we will explore in more depth 
+  than the others.**
 
 Since phylogenetic inference under different rooting scenarios has already been performed
 by Frida at the outset of the analyses recorded here, the most computationally intensive 
