@@ -20,7 +20,7 @@ open my $fh, '<', $sttfile or die $!;
 while(<$fh>) {
 	chomp;
 	my @fields = split /\t/, $_;
-	if ( $fields[0] ne 'raw_age' ) {
+	if ( $fields[0] ne 'age' ) {
 		if ( not defined $scale ) {
 			$scale = $fields[0] / $rootage;
 			$cols = $#fields;
