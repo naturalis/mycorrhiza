@@ -11,8 +11,15 @@ the following files are here:
   which have been averaged here using [the log merging script](../../script/logmerge.pl)
   to produce the [merged log](merged.log).
 - a new driver [script](draw.sh) for tree visualization, and the resulting
-  [cladogram](Tree.nex.bt.nex.supp.svg) and [phylogram](Tree.nex.bt.nex.ms.svg)
+  [cladogram](Tree.nex.bt.nex.supp.svg) ([pdf](Tree.nex.bt.nex.supp.pdf) version) and 
+  [phylogram](Tree.nex.bt.nex.ms.svg) ([pdf](Tree.nex.bt.nex.ms.pdf) version).
 - a new [Q matrix](qmatrix.tsv), generated with the [qmatrix.pl](../../script/qmatrix.pl)
   script using: `perl ../../script/qmatrix.pl -l merged.log -s states.tsv > qmatrix.tsv`,
   the Q matrix imported in [a D3/HTML document](d3.html) and a [PDF version](d3.pdf) of
   the D3 visualization.
+- `perl ../../script/states_through_time.pl -t Tree.nex.bt.nex -l merged.log -v > stt.tsv`
+  to produce a [states-through-time](stt.tsv) file, which was further simplified using:
+  `perl ../../script/simplify-stt.pl -s stt.tsv > stt-simplified.tsv`, yielding
+  [stt-simplified.tsv](stt-simplified.tsv). This was then incorporated into a 
+  [spreadsheet](StatesThroughTime-bin50.xlsx) to produce a 
+  [visualization](StatesThroughTime-bin50.pdf).
