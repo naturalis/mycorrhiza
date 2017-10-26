@@ -26,28 +26,31 @@ mosses ([_Bryophyta_](http://eol.org/pages/3768/overview)),
 hornworts ([_Anthocerotophyta_](http://eol.org/pages/3678/overview)) and 
 vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 
-- **MBasal** - liverworts split off first, followed by mosses, and hornworts are sister to 
-  vascular plants. This yields the following topology: 
+- [**MBasal**](results/MBasal/MBasal.pdf) - liverworts split off first, followed by mosses, 
+  and hornworts are sister to vascular plants. This yields the following topology: 
   `(((Anthocerotophyta,Tracheophyta),Bryophyta),Marchantiophyta);`  
-- **ABasal** - hornworts branch off first, yielding the following topology: 
+- [**ABasal**](results/ABasal/ABasal.pdf) - hornworts branch off first, yielding the 
+  following topology: 
   `(((Marchantiophyta,Bryophyta),Tracheophyta),Anthocerotophyta);`
-- **TBasal** - vascular plants branch off first, yielding the following topology: 
+- [**TBasal**](results/TBasal/TBasal.pdf) - vascular plants branch off first, yielding 
+  the following topology: 
   `(((Marchantiophyta,Bryophyta),Anthocerotophyta),Tracheophyta);`
-- **ATxMB** - liverworts and mosses (M,B) form a monophyletic group, and so do
-  hornworts and vascular plants (A,T), resulting in: 
+- [**ATxMB**](results/TBasal/TBasal.pdf) - liverworts and mosses (M,B) form a monophyletic 
+  group, and so do hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
   **In the manuscript, this is considered the preferred rooting, which we will explore 
   in more depth than the others.**
 
 For each of these rootings, we performed a BEAST analysis to date the trees. The results
 of these analysis are part of a separate (too-large-for-github) submission available at
-[10.5281/zenodo.1037548](http://doi.org/10.5281/zenodo.1037548). Using the consensus trees,
-we performed phylogenetic comparative `multistate` analyses with the program
-[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), in which each state change 
-is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
-so that various hypotheses can be tested using Bayes Factors.
+[10.5281/zenodo.1037548](http://doi.org/10.5281/zenodo.1037548).
 
-## Ancestral state reconstruction
+## Comparative analysis
+
+Using the consensus trees, we performed phylogenetic comparative `multistate` analyses 
+with the program [BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), in which 
+each state change is a transition that is modeled in a Q matrix, which is amenable to 
+parameter restriction so that various hypotheses can be tested using Bayes Factors.
 
 Because different higher taxa among the mycorrhiza can associate with land plants in 
 [a variety of observed combinations](results/legend.pdf) there is potentially a very 
@@ -62,13 +65,13 @@ in the following ways:
   instantaneously.
 - We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
 
-## Preparing the input data
+### Preparing the input data
 
-To prepare our input data, we do the steps outlined below. Note that this assumes the 
+To prepare our input data, we take the steps outlined below. Note that this assumes the 
 following about the data:
 
-1. The input trees are in Nexus format. Newick trees need to be converted to Nexus first,
-   e.g. using FigTree, Mesquite, etc.
+1. The consensus trees are in Nexus format. Newick trees need to be converted to Nexus 
+   first, e.g. using FigTree, Mesquite, etc.
 2. The input data are a tabular file that must meet the following requirements: line 
    breaks in UNIX format, a single header line that at least enumerates all state symbols
    as a space-separated list between parentheses, all subsequent lines start with the 
@@ -76,7 +79,7 @@ following about the data:
    then one or more spaces (can be tabs), then the states, which can either be a single
    string or space (tab) separated.
 
-### 1. Make input data
+### 1. Prepare input data files
 
 First we make the raw input for BayesTraits/MultiState using the script 
 `make_ms_input.pl`. Make sure that the data with associations is in the same format as 
@@ -98,7 +101,7 @@ would be:
 - `-t` output data in TSV format, reconciled with tree
 - `> <states>` location to redirect states table to file
 
-### 2. Make restriction commands
+### 2. Generate BayesTraits command files
 
 Then we create the BayesTraits/MultiState commands for restricting the transitions as
 per the general idea described above. These commands will also ensure that the run is
@@ -131,7 +134,7 @@ spreadsheet format, and a text file with the restriction commands. You can now r
 analysis, as per the instructions below, or explore your data first in Mesquite to do a
 visual check to see if it looks sane (probably a good idea).
 
-## Exploring your data
+### 3. (Optional) exploring your data in Mesquite
 
 If you want to explore your data in Mesquite you can run the `make_nexus.pl` script. 
 This script expects your data to be formatted with a header that enumerates all state 
@@ -143,7 +146,7 @@ TableS1.txt. The full command would be:
 You can then open this file in Mesquite and trace the character state changes (as 
 reconstructed under maximum parsimony) on the tree topology.
 
-## Running an analysis
+### 4. Running a BayesTraits analysis
 
 To run an analysis like this, we have to do the following steps:
 
@@ -156,38 +159,41 @@ To run an analysis like this, we have to do the following steps:
 The data directory [data/2016-12-01](data/2016-12-01) contains various hypothesis tests 
 applied to the `MBasal` rooting. The documentation there should also explain the rate 
 constraint test applied to the either rootings, in directory 
-[data/2017-03-06](data/2017-03-06). Together these analyses form the basis of the results.
+[data/2017-03-06](data/2017-03-06). Together these analyses form the basis of the Bayes
+factor analyses.
+
+### 5. Visualizing BayesTraits results
+
+The iteration of the workflow that produced the figures presented in the manuscript
+was executed in [data/2017-10-06](data/2017-10-06). That directory's README contains 
+more detailed information about the analysis steps.
 
 # Results
 
-**Note that as of 2017-10-06 the most recent result files were produced inside 
-[data/2017-10-06](data/2017-10-06), not the results folder**
-
 The general outcomes of this project are:
 
-- The four rootings (given here as simple PDFs: 
-  [ABasal](data/2017-03-16/ABasal.pdf), 
-  [ATxMB](data/2017-03-16/ATxMB.pdf), 
-  [MBasal](data/2017-03-16/MBasal.pdf), and 
-  [TBasal](data/2017-03-16/TBasal.pdf)) for which we generated
-  a reconstruction of the root states. These have been visualized as likelihood pies for 
-  the four root nodes (respectively:
-  [ABasal](results/ABasal_pie_simple.pdf),
-  [ATxMB](results/ATxMB_pie_simple.pdf), 
-  [MBasal](results/MBasal_pie_simple.pdf), and
-  [TBasal](results/TBasal_pie_simple.pdf),
-  with [legend](results/legend.pdf))
-- For the preferred rooting (`ATxMB`) a reconstruction of the likelihood pies for all the 
-  nodes visualized on a [radial tree](data/2017-10-06/Tree.nex.bt.nex.supp.pdf) to
-  be used as supplementary figure with the manuscript, as well as a 
-  [simplified radial tree](data/2017-10-06/Tree.nex.bt.nex.ms.pdf) that can be 
-  inserted in the main manuscript body.
-- For the state transitions on the preferred rooting to be visualized as a 
-  [circos-style graph](data/2017-10-06/d3.pdf) (for this we used D3, not circos, because in- 
-  and outflows need different sizes).
-- an [enumeration](results/RateConstraints.xlsx) of the most likely 
-  scenarios by which the initial association between mycorrhiza and land plants came 
-  about, with their relative support by the data quantified.
-- a [states through time plot](data/2017-10-06/StatesThroughTime-bin50.pdf) that
-  shows which likelihood pie slices dominated sliding windows from the root of the tree
-  to the present.
+* **A database of observed associations**, summarized [here](results/legend.pdf)
+* **The four rootings**, given here as simplified topologies (PDFs): 
+  - [ATxMB](results/ATxMB/ATxMB.pdf)
+  - [ABasal](results/ABasal/ABasal.pdf)  
+  - [MBasal](results/MBasal/MBasal.pdf)
+  - [TBasal](results/TBasal/TBasal.pdf)
+* **Reconstruction of the root states**, visualized as pie charts for the four roots:
+  - [ATxMB](results/ATxMB_pie_simple.pdf)  
+  - [ABasal](results/ABasal_pie_simple.pdf)
+  - [MBasal](results/MBasal_pie_simple.pdf)
+  - [TBasal](results/TBasal_pie_simple.pdf)
+* **Hypothesis testing results**, collected in a [table](results/RateConstraints.xlsx) 
+  of the constraints tested on the four rootings, in triplicate, and compared with 
+  unconstrained runs, significant differences calculated as Bayes factors.
+* **Reconstruction of the interior nodes**, for the preferred rooting (`ATxMB`) a 
+  reconstruction of the ancestral states for all the nodes: 
+  - [manuscript phylogram and higher taxa](results/ATxMB/ATxMB_radial_ms.pdf)
+  - [supplementary cladogram with pie chars](results/ATxMB/ATxMB_radial_supp.pdf)
+* **Estimates of state transition rates**, for the preferred rooting visualized as:
+  - [HTML/D3 Circos graph](results/Circos/d3.html)
+  - [PDF Circos graph](results/Circos/d3.pdf)
+* **Sliding window analysis of states**, visualized as:
+  - [states through time plot](data/StatesThroughTime/StatesThroughTime-bin50.pdf) that
+    shows which likelihood pie slices dominated sliding windows from the root of the tree
+    to the present.
