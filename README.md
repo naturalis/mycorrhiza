@@ -7,7 +7,8 @@ Trait data and analysis
 This repository holds trait data data and scripts for part of the methods of the 
 manuscript entitled _Evolutionary dynamics of mycorrhizal symbiosis in land plant 
 diversification_ by Frida A.A. Feijen, Rutger A. Vos, Jorinde Nuytinck & 
-Vincent S.F.T. Merckx. 
+Vincent S.F.T. Merckx. The contents of this repository are made available under
+a [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
 Directory structure:
 
