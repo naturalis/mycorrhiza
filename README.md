@@ -68,10 +68,18 @@ in the following ways:
   instantaneously.
 - We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
 
-### Preparing the input data
+## Workflow overview
 
-To prepare our input data, we take the steps outlined below. Note that this assumes the 
-following about the data:
+Broadly speaking, the steps that are described in the manuscript are described in the
+following, numbered sections. These steps have been executed in the data section of
+this repository, with different iterations in dated folders. The most relevant data 
+subfolders are the most recent ones, in which the workflow was debugged and all the 
+data were double-checked.
+
+### 1. Preparing input data files
+
+First we make the raw input for BayesTraits/MultiState using the script 
+`make_ms_input.pl`. This assumes the following:
 
 1. The consensus trees are in Nexus format. Newick trees need to be converted to Nexus 
    first, e.g. using FigTree, Mesquite, etc.
@@ -80,21 +88,16 @@ following about the data:
    as a space-separated list between parentheses, all subsequent lines start with the 
    taxon name (spelled exactly the same as in the tree, including underscores for spaces),
    then one or more spaces (can be tabs), then the states, which can either be a single
-   string or space (tab) separated.
+   string or space (tab) separated. Verify that the data with associations is in the 
+   same format as HostFungusAssociations.txt or TableS1.txt. 
 
-### 1. Prepare input data files
-
-First we make the raw input for BayesTraits/MultiState using the script 
-`make_ms_input.pl`. Make sure that the data with associations is in the same format as 
-HostFungusAssociations.txt or TableS1.txt. The key here is that each data line has the 
-taxon name, some whitespace, and then a sequence of associations, with or without 
-spaces in it. For each line, the first word is matched against the tips in the tree, 
+For each line in the data file, the first word is matched against the tips in the tree, 
 any lines that don't match anything are assumed to be headers or footers and are 
 ignored. When this happens, a warning is emitted by 
 [make_ms_input.pl](script/make_ms_input.pl), as follows:
 `putative taxon '$taxon' not in tree, ignoring (could also be table header)`
-Note that you also need to capture STDOUT to make a states file, so the full command
-would be:
+Note that you need to capture STDOUT to make a states coding file, so the full command
+is:
 
     make_ms_input.pl -d <indata> -i <intree> -o <outtree> -t <outdata> > <states>
 
@@ -159,17 +162,21 @@ To run an analysis like this, we have to do the following steps:
 
     `BayesTraitsV2_OpenMP_Quad <tree.nex> <data.tsv> < restrictions.txt`
 
-The data directory [data/2016-12-01](data/2016-12-01) contains various hypothesis tests 
-applied to the `MBasal` rooting. The documentation there should also explain the rate 
-constraint test applied to the either rootings, in directory 
-[data/2017-03-06](data/2017-03-06). Together these analyses form the basis of the Bayes
-factor analyses.
+The general idea is that many of these analyses are run (to evaluate all the hypotheses, 
+for all rootings, and replicated (we ran this triplicated)). Hence, the following step
+is to post process all the log files for hypothesis test results and visualizations.
 
-### 5. Visualizing BayesTraits results
+### 5. Post-processing BayesTraits analysis results
 
-The iteration of the workflow that produced the figures presented in the manuscript
-was executed in [data/2017-10-06](data/2017-10-06). That directory's README contains 
-more detailed information about the analysis steps.
+- The data directory [data/2016-12-01](data/2016-12-01) establishes a workflow for running 
+  various hypothesis tests applied to different rootings. The documentation there should 
+  also make clear how the rate constraint tests are applied to the others rootings, in directory 
+  [data/2017-03-06](data/2017-03-06). From the marginal likelihoods of the different 
+  constraints, the [rate constraints table](results/RateConstraints.xlsx) is populated so
+  that the Bayes factors can be computed.
+- The iteration of the workflow that produced the figures presented in the manuscript
+  was executed in [data/2017-10-06](data/2017-10-06). That directory's README contains 
+  more detailed information about the analysis steps.
 
 # Results
 
