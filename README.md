@@ -1,8 +1,11 @@
-# Repository outline
-
-This repository holds data and scripts for part of the methods of the manuscript entitled
-_Evolutionary dynamics of mycorrhizal symbiosis in land plant diversification_ by 
-Frida A.A. Feijen, Rutger A. Vos, Jorinde Nuytinck & Vincent S.F.T. Merckx. 
+Evolutionary dynamics of mycorrhizal symbiosis in land plant diversification
+============================================================================
+Trait data and analysis
+-----------------------
+This repository holds trait data data and scripts for part of the methods of the 
+manuscript entitled _Evolutionary dynamics of mycorrhizal symbiosis in land plant 
+diversification_ by Frida A.A. Feijen, Rutger A. Vos, Jorinde Nuytinck & 
+Vincent S.F.T. Merckx. 
 
 Directory structure:
 
