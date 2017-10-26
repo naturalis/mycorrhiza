@@ -72,9 +72,15 @@ in the following ways:
 
 Broadly speaking, the steps that are described in the manuscript are described in the
 following, numbered sections. These steps have been executed in the data section of
-this repository, with different iterations in dated folders. The most relevant data 
-subfolders are the most recent ones, in which the workflow was debugged and all the 
-data were double-checked.
+this repository, with different iterations in date-stamped folders. The most relevant 
+of these subfolders are the most recent ones, in which the workflow was debugged and all 
+the data were double-checked. 
+
+Note that this repository also contains abandoned results, e.g. earlier attempts to 
+develop the general workflow, older versions of the input files, project background 
+documentation, and so on. Old files that are not discussed in any of the READMEs should 
+be considered irrelevant for the substance of the methods and results discussed in the 
+manuscript.
 
 ### 1. Preparing input data files
 
@@ -116,7 +122,7 @@ the script [make_restrictions.pl](script/make_restrictions.pl) was invoked with 
 `--hyper` flag. It is probably a good idea to do this. In addition, by default, the 
 command file will configure a chain with 'infinite' iterations (i.e. -1) that needs to 
 be interrupted manually. If you have a better idea about the number of iterations it is 
-worth specifying that. A conservative estimate for the present project is 10*10^6 
+worth specifying that. A conservative estimate for the present project is 10 x 10^6 
 generations, of which we will want to discard up to 50% burnin (in one case this 
 appeared to be necessary). Lastly, it might make sense to indicate how many cores you 
 have available for the analysis, although this only works for multi-core (e.g. OpenMP) 
