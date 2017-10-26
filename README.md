@@ -42,18 +42,20 @@ vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
   group, and so do hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
   **In the manuscript, this is considered the preferred rooting, which we will explore 
-  in more depth than the others.**
+  in more depth than the others. Earlier versions of the analyses also explored MBasal, 
+  so there may be reference to that here and there.**
 
-For each of these rootings, we performed a BEAST analysis to date the trees. The results
-of these analysis are part of a separate (too-large-for-github) submission available at
+For each of the rootings, we performed a BEAST dating analysis. The results of these 
+analyses are part of a separate (too-large-for-github) submission available at
 [10.5281/zenodo.1037548](http://doi.org/10.5281/zenodo.1037548).
 
 ## Comparative analysis
 
-Using the consensus trees, we performed phylogenetic comparative `multistate` analyses 
-with the program [BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), in which 
-each state change is a transition that is modeled in a Q matrix, which is amenable to 
-parameter restriction so that various hypotheses can be tested using Bayes Factors.
+Using consensus over the BEAST trees, we performed phylogenetic comparative `multistate` 
+analyses with the program [BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), 
+in which each state change is a transition that is modeled in a Q matrix, which is 
+amenable to parameter restriction so that various hypotheses can be tested using Bayes 
+Factors.
 
 Because different higher taxa among the mycorrhiza can associate with land plants in 
 [a variety of observed combinations](results/legend.pdf) there is potentially a very 
