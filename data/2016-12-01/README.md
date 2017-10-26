@@ -73,13 +73,3 @@ files end up in their respective results directories ([run1](run1), [run2](run2)
 the last lines of the *.Stones.txt files. The (very large, compressed) *.log.gz files 
 contain the posterior samples of all the internal node states and transition rates that 
 BayesTraits encountered.
-
-Final summaries
----------------
-
-### [qmatrix.run2.unconstrained.tsv](qmatrix.run2.unconstrained.tsv)
-
-This table shows the Q matrix as extracted from 
-[the unconstrained log of the second run](run2/HostFungusAssociations.txt.unconstrained.log.gz),
-out of which the matrix was extracted using the script [qmatrix.pl](../../script/qmatrix.pl).
-
