@@ -1,10 +1,12 @@
-# Comparative analysis of associations between land plants and mycorrhiza
+# Repository outline
 
-This repository holds data and scripts to analyze associations between land plants and 
-mycorrhiza. This is a collaboration between Vincent Merckx, Frida Feijen, Jorinde Nuytinck
-and Rutger Vos. Directory structure:
+This repository holds data and scripts for part of the methods of the manuscript entitled
+_Evolutionary dynamics of mycorrhizal symbiosis in land plant diversification_ by 
+Frida A.A. Feijen, Rutger A. Vos, Jorinde Nuytinck & Vincent S.F.T. Merckx. 
 
-- [data](data): contains verbatim input data and pruned/converted versions thereof
+Directory structure:
+
+- [data](data): contains verbatim input data and pruned/converted versions
 - [script](script): contains conversion scripts
 - [doc](doc): supporting documentation, manuscript files
 - [results](results): final output files
@@ -31,38 +33,36 @@ vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 - `ATxMB` - liverworts and mosses (M,B) form a monophyletic group, and so do
   hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
-  **As of 2017-10-06, this is the preferred rooting, which we will explore in more depth 
-  than the others.**
+  **In the manuscript, this is considered the preferred rooting, which we will explore 
+  in more depth than the others.**
 
-Since phylogenetic inference under different rooting scenarios has already been performed
-by Frida at the outset of the analyses recorded here, the most computationally intensive 
-steps that need to be taken involve ancestral state reconstruction. In a previous 
-iteration, Frida had done this using a dispersal model where state changes were modeled as 
-migrations. Here we will instead do the analysis in a more standard way, using 
-[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), so that each state change 
+For each of these rootings, we performed a BEAST analysis to date the trees. The results
+of these analysis are part of a separate (too-large-for-github) submission available at
+[10.5281/zenodo.1037548](http://doi.org/10.5281/zenodo.1037548). Using the consensus trees,
+we performed phylogenetic comparative `multistate` analyses with the program
+[BayesTraits](http://www.evolution.rdg.ac.uk/BayesTraits.html), in which each state change 
 is a transition that is modeled in a Q matrix, which is amenable to parameter restriction
 so that various hypotheses can be tested using Bayes Factors.
 
 ## Ancestral state reconstruction
 
 Because different higher taxa among the mycorrhiza can associate with land plants in 
-[different combinations](results/legend.pdf) there is potentially a very large number of 
-states: if we treat every permutation of associations as a potential state within the 
-context of a phylogenetic comparative analysis we will end up with an explosion of 
-parameters in the Q matrix such that the analysis becomes practically intractable. But, 
-we can reduce the number of parameters in the following ways:
+[a variety of observed combinations](results/legend.pdf) there is potentially a very 
+large number of states: if we treat every permutation of associations as a potential 
+state we will end up with an explosion of parameters in the Q matrix such that the 
+analysis becomes practically intractable. But, we can reduce the number of parameters 
+in the following ways:
 
 - We only take the empirically observed combinations of observations, not all 
-  permutations.
+  permutations (i.e. only [these](results/legend.pdf)).
 - We disallow transitions where more than one association is gained or lost 
   instantaneously.
 - We then do a Reversible Jump MCMC analysis to further reduce the Q matrix.
 
 ## Preparing the input data
 
-To prepare our input data, for an analysis as described above using the program 
-BayesTraits (specifically, the MultiState mode of this program) we have to do the steps 
-outlined below. Note that this assumes the following about the data:
+To prepare our input data, we do the steps outlined below. Note that this assumes the 
+following about the data:
 
 1. The input trees are in Nexus format. Newick trees need to be converted to Nexus first,
    e.g. using FigTree, Mesquite, etc.
