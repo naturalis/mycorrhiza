@@ -1,5 +1,7 @@
 Evolutionary dynamics of mycorrhizal symbiosis in land plant diversification
 ============================================================================
+![sequoia](doc/sekvoja-1.gif)
+
 Trait data and analysis
 -----------------------
 This repository holds trait data data and scripts for part of the methods of the 
