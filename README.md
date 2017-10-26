@@ -26,14 +26,14 @@ mosses ([_Bryophyta_](http://eol.org/pages/3768/overview)),
 hornworts ([_Anthocerotophyta_](http://eol.org/pages/3678/overview)) and 
 vascular plants ([_Tracheophyta_](http://eol.org/pages/4077/overview)).
 
-- `MBasal` - liverworts split off first, followed by mosses, and hornworts are sister to 
+- **MBasal** - liverworts split off first, followed by mosses, and hornworts are sister to 
   vascular plants. This yields the following topology: 
   `(((Anthocerotophyta,Tracheophyta),Bryophyta),Marchantiophyta);`  
-- `ABasal` - hornworts branch off first, yielding the following topology: 
+- **ABasal** - hornworts branch off first, yielding the following topology: 
   `(((Marchantiophyta,Bryophyta),Tracheophyta),Anthocerotophyta);`
-- `TBasal` - vascular plants branch off first, yielding the following topology: 
+- **TBasal** - vascular plants branch off first, yielding the following topology: 
   `(((Marchantiophyta,Bryophyta),Anthocerotophyta),Tracheophyta);`
-- `ATxMB` - liverworts and mosses (M,B) form a monophyletic group, and so do
+- **ATxMB** - liverworts and mosses (M,B) form a monophyletic group, and so do
   hornworts and vascular plants (A,T), resulting in: 
   `((Marchantiophyta,Bryophyta),(Anthocerotophyta,Tracheophyta));`
   **In the manuscript, this is considered the preferred rooting, which we will explore 
