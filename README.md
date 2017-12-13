@@ -197,10 +197,10 @@ The general outcomes of this project are:
   - [MBasal](results/MBasal/MBasal.pdf)
   - [TBasal](results/TBasal/TBasal.pdf)
 * **Reconstruction of the root states**, visualized as pie charts for the four roots:
-  - [ATxMB](results/ATxMB_pie_simple.pdf)  
-  - [ABasal](results/ABasal_pie_simple.pdf)
-  - [MBasal](results/MBasal_pie_simple.pdf)
-  - [TBasal](results/TBasal_pie_simple.pdf)
+  - [ATxMB](results/ATxMB/ATxMB_pie_simple.pdf)  
+  - [ABasal](results/ABasal/ABasal_pie_simple.pdf)
+  - [MBasal](results/MBasal/MBasal_pie_simple.pdf)
+  - [TBasal](results/TBasal/TBasal_pie_simple.pdf)
 * **Hypothesis testing results**, collected in a [table](results/RateConstraints.xlsx) 
   of the constraints tested on the four rootings, in triplicate, and compared with 
   unconstrained runs, significant differences calculated as Bayes factors.
