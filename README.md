@@ -214,4 +214,4 @@ The general outcomes of this project are:
 * **Sliding window analysis of states**, visualized as:
   - [states through time plot](results/StatesThroughTime/StatesThroughTime-bin50.pdf) that
     shows which likelihood pie slices dominated sliding windows from the root of the tree
-    to the present.
+    to the present. Based on [these data](results/StatesThroughTime/StatesThroughTime-bin50.txt)
