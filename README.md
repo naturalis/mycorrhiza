@@ -212,6 +212,6 @@ The general outcomes of this project are:
   - [HTML/D3 Circos graph](results/Circos/d3.html)
   - [PDF Circos graph](results/Circos/d3.pdf)
 * **Sliding window analysis of states**, visualized as:
-  - [states through time plot](data/StatesThroughTime/StatesThroughTime-bin50.pdf) that
+  - [states through time plot](results/StatesThroughTime/StatesThroughTime-bin50.pdf) that
     shows which likelihood pie slices dominated sliding windows from the root of the tree
     to the present.
